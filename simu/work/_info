@@ -1,0 +1,176 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/mleve/Desktop/VHDL/cpu_vhdl/simu
+Ealu
+Z1 w1748097147
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8../src/ALU.vhd
+Z6 F../src/ALU.vhd
+l0
+L5
+Vk:Q_SVP5QzAjFY0PSk<Vg0
+!s100 En2lGLWl46fnaOVLPH^NV1
+Z7 OV;C;10.5b;63
+31
+Z8 !s110 1748097153
+!i10b 1
+Z9 !s108 1748097153.000000
+Z10 !s90 -reportprogress|300|-93|../src/ALU.vhd|
+Z11 !s107 ../src/ALU.vhd|
+!i113 1
+o-93
+Z12 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+R4
+Z13 DEx4 work 3 alu 0 22 k:Q_SVP5QzAjFY0PSk<Vg0
+l19
+L14
+Vm?1Mjj:RghKQU6H[_DGk_0
+!s100 EPQLeM0EnRC5Yij=3O^O12
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+o-93
+R12
+Ebanc_registres
+Z14 w1747917153
+R2
+R3
+R4
+R0
+Z15 8../src/register.vhd
+Z16 F../src/register.vhd
+l0
+L5
+V5dOiOaLMe8hm^Y]z@C1a@3
+!s100 Ik^?1H[UZc]P>e^j:l4`91
+R7
+31
+R8
+!i10b 1
+R9
+Z17 !s90 -reportprogress|300|-93|../src/register.vhd|
+Z18 !s107 ../src/register.vhd|
+!i113 1
+o-93
+R12
+Artl
+R2
+R3
+R4
+Z19 DEx4 work 14 banc_registres 0 22 5dOiOaLMe8hm^Y]z@C1a@3
+l34
+L21
+VAg]:C1NNE@oT61]AzLhgR0
+!s100 IM6Idh3L^jlX8FMBI0EUX1
+R7
+31
+R8
+!i10b 1
+R9
+R17
+R18
+!i113 1
+o-93
+R12
+Etb_unite_traitement
+Z20 w1748096402
+R2
+R3
+R4
+R0
+Z21 8tb_Unite_Traitement.vhd
+Z22 Ftb_Unite_Traitement.vhd
+l0
+L5
+Vn>d_eXkh@W2Ab3G:BX`=:1
+!s100 ikhicA?6KB>9Bj[BHS0OV3
+R7
+31
+Z23 !s110 1748097154
+!i10b 1
+Z24 !s108 1748097154.000000
+Z25 !s90 -reportprogress|300|-93|tb_Unite_Traitement.vhd|
+Z26 !s107 tb_Unite_Traitement.vhd|
+!i113 1
+o-93
+R12
+Asim
+R2
+R3
+R4
+DEx4 work 19 tb_unite_traitement 0 22 n>d_eXkh@W2Ab3G:BX`=:1
+l31
+L8
+VohUagE4=KkaHAN6LK]ieR2
+!s100 f>nQ1ic;?>EDI`V5GZRM<0
+R7
+31
+R23
+!i10b 1
+R24
+R25
+R26
+!i113 1
+o-93
+R12
+Eunite_traitement
+Z27 w1747920212
+R2
+R3
+R4
+R0
+Z28 8../src/UNITE_TRAITEMENT.vhd
+Z29 F../src/UNITE_TRAITEMENT.vhd
+l0
+L5
+V[K@gDk10Y1@YLBWAeEDb^3
+!s100 ]ikAcB@id`D:551F@GMdH2
+R7
+31
+R8
+!i10b 1
+R9
+Z30 !s90 -reportprogress|300|-93|../src/UNITE_TRAITEMENT.vhd|
+Z31 !s107 ../src/UNITE_TRAITEMENT.vhd|
+!i113 1
+o-93
+R12
+Artl
+R13
+R19
+R2
+R3
+R4
+DEx4 work 16 unite_traitement 0 22 [K@gDk10Y1@YLBWAeEDb^3
+l23
+L20
+V<@V7bL]z?UQf=M[dE@4Wd2
+!s100 g5iieik5hGeD98;?84F2e2
+R7
+31
+R8
+!i10b 1
+R9
+R30
+R31
+!i113 1
+o-93
+R12
