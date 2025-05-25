@@ -13,7 +13,6 @@ ARCHITECTURE sim OF tb_Unite_Traitement IS
             RA, RB, RW : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
             WE : IN STD_LOGIC;
             OP : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
-            S_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
             N, Z, C, V : OUT STD_LOGIC
         );
     END COMPONENT;
@@ -24,7 +23,6 @@ ARCHITECTURE sim OF tb_Unite_Traitement IS
     SIGNAL RA, RB, RW : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL WE : STD_LOGIC := '0';
     SIGNAL OP : STD_LOGIC_VECTOR(2 DOWNTO 0);
-    SIGNAL S_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
     SIGNAL N, Z, C, V : STD_LOGIC;
 
     CONSTANT CLK_PERIOD : TIME := 10 ns;
@@ -40,7 +38,6 @@ BEGIN
         RW => RW,
         WE => WE,
         OP => OP,
-        S_out => S_out,
         N => N,
         Z => Z,
         C => C,

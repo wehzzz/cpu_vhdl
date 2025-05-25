@@ -21,16 +21,16 @@ BEGIN
     A_signed <= signed(A);
     B_signed <= signed(B);
 
-    -- Sign extension (manual, without resize)
-    A_ext <= A_signed(31) & A_signed;
-    B_ext <= B_signed(31) & B_signed;
+    -- Sign extension (using resize)
+    A_ext <= resize(A_signed, 33);
+    B_ext <= resize(B_signed, 33);
 
     PROCESS (OP, A_signed, B_signed, A_ext, B_ext)
     BEGIN
         carry_bit <= '0';
         overflow_bit <= '0';
-        R_ext <= (OTHERS => '0');
-        R <= (OTHERS => '0');
+        R_ext <= (OTHERS => '0'); -- Initialize R_ext
+        R <= (OTHERS => '0'); -- Initialize R
 
         CASE OP IS
             WHEN "000" => -- ADD
@@ -39,7 +39,7 @@ BEGIN
                 carry_bit <= R_ext(32);
                 overflow_bit <= (NOT (A_signed(31) XOR B_signed(31))) AND (A_signed(31) XOR R(31));
 
-            WHEN "001" => -- B (pass-through)
+            WHEN "001" => -- B
                 R <= B_signed;
 
             WHEN "010" => -- SUB

@@ -12,7 +12,6 @@ ENTITY Unite_Traitement IS
 
         OP : IN STD_LOGIC_VECTOR(2 DOWNTO 0); -- Code opération ALU
 
-        S_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0); -- Résultat
         N, Z, C, V : OUT STD_LOGIC -- Flags
     );
 END ENTITY;
@@ -21,7 +20,6 @@ ARCHITECTURE rtl OF Unite_Traitement IS
     -- Signaux internes
     SIGNAL A, B, S : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
-
     -- Banc de Registres
     U_Registre : ENTITY work.Banc_Registres
         PORT MAP(

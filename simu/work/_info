@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/mleve/Desktop/VHDL/cpu_vhdl/simu
 Ealu
-Z1 w1748097147
+Z1 w1748190974
 Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
@@ -22,9 +22,9 @@ Vk:Q_SVP5QzAjFY0PSk<Vg0
 !s100 En2lGLWl46fnaOVLPH^NV1
 Z7 OV;C;10.5b;63
 31
-Z8 !s110 1748097153
+Z8 !s110 1748190978
 !i10b 1
-Z9 !s108 1748097153.000000
+Z9 !s108 1748190978.000000
 Z10 !s90 -reportprogress|300|-93|../src/ALU.vhd|
 Z11 !s107 ../src/ALU.vhd|
 !i113 1
@@ -37,8 +37,8 @@ R4
 Z13 DEx4 work 3 alu 0 22 k:Q_SVP5QzAjFY0PSk<Vg0
 l19
 L14
-Vm?1Mjj:RghKQU6H[_DGk_0
-!s100 EPQLeM0EnRC5Yij=3O^O12
+V3DETbikTofXg^7zQaKdm]0
+!s100 n[JmzNNUUX84011L=l1G70
 R7
 31
 R8
@@ -50,7 +50,7 @@ R11
 o-93
 R12
 Ebanc_registres
-Z14 w1747917153
+Z14 w1748188707
 R2
 R3
 R4
@@ -91,7 +91,7 @@ R18
 o-93
 R12
 Etb_unite_traitement
-Z20 w1748096402
+Z20 w1748184673
 R2
 R3
 R4
@@ -104,11 +104,11 @@ Vn>d_eXkh@W2Ab3G:BX`=:1
 !s100 ikhicA?6KB>9Bj[BHS0OV3
 R7
 31
-Z23 !s110 1748097154
+R8
 !i10b 1
-Z24 !s108 1748097154.000000
-Z25 !s90 -reportprogress|300|-93|tb_Unite_Traitement.vhd|
-Z26 !s107 tb_Unite_Traitement.vhd|
+R9
+Z23 !s90 -reportprogress|300|-93|tb_Unite_Traitement.vhd|
+Z24 !s107 tb_Unite_Traitement.vhd|
 !i113 1
 o-93
 R12
@@ -117,39 +117,39 @@ R2
 R3
 R4
 DEx4 work 19 tb_unite_traitement 0 22 n>d_eXkh@W2Ab3G:BX`=:1
-l31
+l29
 L8
-VohUagE4=KkaHAN6LK]ieR2
-!s100 f>nQ1ic;?>EDI`V5GZRM<0
-R7
-31
-R23
-!i10b 1
-R24
-R25
-R26
-!i113 1
-o-93
-R12
-Eunite_traitement
-Z27 w1747920212
-R2
-R3
-R4
-R0
-Z28 8../src/UNITE_TRAITEMENT.vhd
-Z29 F../src/UNITE_TRAITEMENT.vhd
-l0
-L5
-V[K@gDk10Y1@YLBWAeEDb^3
-!s100 ]ikAcB@id`D:551F@GMdH2
+V<S4I_hW6ElZEAGRc@K=@I1
+!s100 in09llE:aGjcVYemeT4E]3
 R7
 31
 R8
 !i10b 1
 R9
-Z30 !s90 -reportprogress|300|-93|../src/UNITE_TRAITEMENT.vhd|
-Z31 !s107 ../src/UNITE_TRAITEMENT.vhd|
+R23
+R24
+!i113 1
+o-93
+R12
+Eunite_traitement
+Z25 w1748190771
+R2
+R3
+R4
+R0
+Z26 8../src/UNITE_TRAITEMENT.vhd
+Z27 F../src/UNITE_TRAITEMENT.vhd
+l0
+L5
+VBI4hj2<Afk9AlL5nWYecH2
+!s100 OWe16JNc7>3m^bDh_K5^91
+R7
+31
+R8
+!i10b 1
+R9
+Z28 !s90 -reportprogress|300|-93|../src/UNITE_TRAITEMENT.vhd|
+Z29 !s107 ../src/UNITE_TRAITEMENT.vhd|
 !i113 1
 o-93
 R12
@@ -159,18 +159,18 @@ R19
 R2
 R3
 R4
-DEx4 work 16 unite_traitement 0 22 [K@gDk10Y1@YLBWAeEDb^3
-l23
-L20
-V<@V7bL]z?UQf=M[dE@4Wd2
-!s100 g5iieik5hGeD98;?84F2e2
+DEx4 work 16 unite_traitement 0 22 BI4hj2<Afk9AlL5nWYecH2
+l22
+L19
+V^lbT^;>0:gcCii38VB8542
+!s100 =feAJY@omLU4lcjkTIM=N0
 R7
 31
 R8
 !i10b 1
 R9
-R30
-R31
+R28
+R29
 !i113 1
 o-93
 R12
