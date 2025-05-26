@@ -2,18 +2,18 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
-entity PC is
-    Port (
+ENTITY PC IS
+    PORT (
         CLK : IN STD_LOGIC;
         Reset : IN STD_LOGIC;
-        E: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-        S: OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+        E : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+        S : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
     );
-end PC;
+END PC;
 
-architecture rtl of PC is
-    signal PC_value: STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-begin
+ARCHITECTURE rtl OF PC IS
+    SIGNAL PC_value : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
+BEGIN
     PROCESS (CLK, Reset)
     BEGIN
         IF Reset = '1' THEN
@@ -25,4 +25,4 @@ begin
 
     S <= PC_value;
 
-end rtl;
+END rtl;

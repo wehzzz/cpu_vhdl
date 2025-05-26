@@ -18,8 +18,8 @@ END Unite_Gestion_Instructions;
 ARCHITECTURE rtl OF Unite_Gestion_Instructions IS
     SIGNAL PC, MuxPC_out, SignExt_out, Mux_in1, Mux_in2 : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
-    Mux_in1 <= STD_LOGIC_VECTOR(signed(PC) + 1);
-    Mux_in2 <= STD_LOGIC_VECTOR(signed(PC) + 1 + signed(SignExt_out));
+    Mux_in1 <= STD_LOGIC_VECTOR(unsigned(PC) + 1);
+    Mux_in2 <= STD_LOGIC_VECTOR(unsigned(PC) + 1 + unsigned(SignExt_out));
 
     -- Multiplexeur pour la selection de l'adresse du PC
     U_Multiplexeur_PC : ENTITY work.Multiplexeur
