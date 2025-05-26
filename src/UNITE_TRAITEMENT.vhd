@@ -19,13 +19,14 @@ END ENTITY;
 ARCHITECTURE rtl OF Unite_Traitement IS
     -- Signaux internes
     SIGNAL A, B, S : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL T : STD_LOGIC_VECTOR(31 DOWNTO 0); -- Temporaire pour l'ALU
 BEGIN
     -- Banc de Registres
     U_Registre : ENTITY work.Banc_Registres
         PORT MAP(
             CLK => CLK,
             Reset => Reset,
-            W => S,
+            W => T,
             RA => RA,
             RB => RB,
             RW => RW,
@@ -40,7 +41,7 @@ BEGIN
             OP => OP,
             A => A,
             B => B,
-            S => S,
+            S => T,
             N => N,
             Z => Z,
             C => C,

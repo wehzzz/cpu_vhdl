@@ -24,6 +24,9 @@ add wave -hex -label "Registre_13" /tb_unite_traitement/DUT/U_Registre/Banc(13)
 add wave -hex -label "Registre_14" /tb_unite_traitement/DUT/U_Registre/Banc(14)
 add wave -hex -label "Registre_15" /tb_unite_traitement/DUT/U_Registre/Banc(15)
 add wave -hex -label "S" /tb_unite_traitement/DUT/U_alu/S
+add wave -position insertpoint sim:/tb_Unite_Traitement/DUT/A
+add wave -position insertpoint sim:/tb_Unite_Traitement/DUT/B
+add wave -position insertpoint sim:/tb_Unite_Traitement/DUT/T
 
 add wave *
 run -a
