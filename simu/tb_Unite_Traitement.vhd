@@ -115,7 +115,7 @@ BEGIN
         RA <= "0010";
         RB <= "0001";
         RW <= "0100";
-        OP <= "001";
+        OP <= "010";
         ALUSrc <= '0';
         WE <= '1';
         WrSrc <= '0';
@@ -139,7 +139,7 @@ BEGIN
         RA <= "0010";
         Imm <= X"05";
         RW <= "0110";
-        OP <= "001";
+        OP <= "010";
         ALUSrc <= '1';
         WE <= '1';
         WrSrc <= '0';
@@ -151,7 +151,7 @@ BEGIN
         RA <= "0001";
         RB <= "0001";
         RW <= "0111";
-        OP <= "000";
+        OP <= "011";
         ALUSrc <= '0';
         WE <= '1';
         WrSrc <= '0';
@@ -159,10 +159,10 @@ BEGIN
         WE <= '0';
 
         --------------------------------------------------
-        -- Write R2 to memory at address 0x30
+        -- Write R2 to memory at address 0x20
         RA <= "0010";
         RB <= "0010";
-        OP <= "000"; -- use R2 as Addr + DataIn
+        OP <= "011"; -- use R2 as Addr + DataIn
         ALUSrc <= '0';
         MemWr <= '1';
         WrSrc <= '0';
@@ -174,7 +174,7 @@ BEGIN
         -- Read from memory at 0x30 into R8
         RA <= "0010"; -- use R2 again for address
         RB <= "0000"; -- ignored
-        OP <= "000";
+        OP <= "011";
         ALUSrc <= '0';
         WrSrc <= '1';
         MemWr <= '0';
