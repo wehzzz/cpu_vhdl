@@ -29,3 +29,4 @@ ARCHITECTURE RTL OF instruction_memory IS
     SIGNAL mem : RAM64x32 := init_mem;
 BEGIN
     Instruction <= mem(to_integer(unsigned (PC)));
+end architecture;

@@ -14,7 +14,6 @@ ENTITY memory IS
 END memory;
 
 ARCHITECTURE rtl OF memory IS
-    -- Declaration Type Tableau Memoire 
     TYPE table IS ARRAY(63 DOWNTO 0) OF STD_LOGIC_VECTOR(31 DOWNTO 0);
     FUNCTION init_banc RETURN table IS
         VARIABLE result : table;
