@@ -1,13 +1,17 @@
-entity memory is
-    Port (
-        CLK : in STD_LOGIC;
-        Reset : in STD_LOGIC;
-        Addr : in STD_LOGIC_VECTOR(5 DOWNTO 0);
-        DataIn : in STD_LOGIC_VECTOR(31 DOWNTO 0);
-        DataOut : out STD_LOGIC_VECTOR(31 DOWNTO 0)
-        WrEn : in STD_LOGIC;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
+
+ENTITY memory IS
+    PORT (
+        CLK : IN STD_LOGIC;
+        Reset : IN STD_LOGIC;
+        Addr : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+        DataIn : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+        DataOut : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+        WrEn : IN STD_LOGIC
     );
-end memory;
+END memory;
 
 ARCHITECTURE rtl OF memory IS
     -- Declaration Type Tableau Memoire 
@@ -19,7 +23,7 @@ ARCHITECTURE rtl OF memory IS
             result(i) := (OTHERS => '0');
         END LOOP;
         RETURN result;
-    END init_banc; 
+    END init_banc;
     SIGNAL Banc : table := init_banc;
 BEGIN
     DataOut <= Banc(to_integer(unsigned(Addr)));

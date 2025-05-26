@@ -12,7 +12,7 @@ ENTITY Unite_Traitement IS
 
         OP : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 
-        ALUSrc, MemWr, WrSrc: IN STD_LOGIC; -- SIGNALS THAT WILL BE REPLACED LATER IN THE PROJECT
+        ALUSrc, MemWr, WrSrc : IN STD_LOGIC; -- SIGNALS THAT WILL BE REPLACED LATER IN THE PROJECT
 
         Imm : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 
@@ -21,14 +21,14 @@ ENTITY Unite_Traitement IS
 END ENTITY;
 
 ARCHITECTURE rtl OF Unite_Traitement IS
-    SIGNAL A, B, ALU_out, Imm_extended, Mux1_out, Mem_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL A, B, ALU_out, Imm_extended, Mux1_out, Mux2_out, Mem_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
     -- Banc de Registres
     U_Registre : ENTITY work.Banc_Registres
         PORT MAP(
             CLK => CLK,
             Reset => Reset,
-            W => ALU_out,
+            W => Mux2_out,
             RA => RA,
             RB => RB,
             RW => RW,
@@ -92,7 +92,7 @@ BEGIN
             A => ALU_out,
             B => Mem_out,
             COM => WrSrc,
-            S => W
+            S => Mux2_out
         );
 
 END ARCHITECTURE;

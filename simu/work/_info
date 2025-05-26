@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/mleve/Desktop/VHDL/cpu_vhdl/simu
 Ealu
-Z1 w1748265820
+Z1 w1748266288
 Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
@@ -22,9 +22,9 @@ Vk:Q_SVP5QzAjFY0PSk<Vg0
 !s100 En2lGLWl46fnaOVLPH^NV1
 Z7 OV;C;10.5b;63
 31
-Z8 !s110 1748265893
+Z8 !s110 1748271721
 !i10b 1
-Z9 !s108 1748265893.000000
+Z9 !s108 1748271721.000000
 Z10 !s90 -reportprogress|300|-93|../src/ALU.vhd|
 Z11 !s107 ../src/ALU.vhd|
 !i113 1
@@ -90,37 +90,37 @@ R18
 !i113 1
 o-93
 R12
-Etb_unite_traitement
-Z20 w1748265875
+Ememory
+Z20 w1748271443
 R2
 R3
 R4
 R0
-Z21 8tb_Unite_Traitement.vhd
-Z22 Ftb_Unite_Traitement.vhd
+Z21 8../src/memory.vhd
+Z22 F../src/memory.vhd
 l0
 L5
-Vn>d_eXkh@W2Ab3G:BX`=:1
-!s100 ikhicA?6KB>9Bj[BHS0OV3
+VAJieE34kheQR0@Vb640>F1
+!s100 mzIQ:7?k_:dd0XFGK9bzY0
 R7
 31
 R8
 !i10b 1
 R9
-Z23 !s90 -reportprogress|300|-93|tb_Unite_Traitement.vhd|
-Z24 !s107 tb_Unite_Traitement.vhd|
+Z23 !s90 -reportprogress|300|-93|../src/memory.vhd|
+Z24 !s107 ../src/memory.vhd|
 !i113 1
 o-93
 R12
-Asim
+Artl
 R2
 R3
 R4
-Z25 DEx4 work 19 tb_unite_traitement 0 22 n>d_eXkh@W2Ab3G:BX`=:1
-l30
-L8
-V0O:RQe9NW`[@2J`e@=C<m2
-!s100 4kKe2:SaA2SY0MC]9FLzJ1
+Z25 DEx4 work 6 memory 0 22 AJieE34kheQR0@Vb640>F1
+l28
+L16
+V4PIbA8mD=mj<JU8If^J722
+!s100 Wjb9<z5l3;=29a`3^OT6A0
 R7
 31
 R8
@@ -131,39 +131,37 @@ R24
 !i113 1
 o-93
 R12
-Eunite_traitement
-Z26 w1748265592
+Emultiplexeur
+Z26 w1748271461
 R2
 R3
 R4
 R0
-Z27 8../src/UNITE_TRAITEMENT.vhd
-Z28 F../src/UNITE_TRAITEMENT.vhd
+Z27 8../src/multiplexeur.vhd
+Z28 F../src/multiplexeur.vhd
 l0
 L5
-VBI4hj2<Afk9AlL5nWYecH2
-!s100 OWe16JNc7>3m^bDh_K5^91
+VfW@C;cGTjU4?k4LhU37683
+!s100 niC3H5Dj2<Y1gU5KIOa0P1
 R7
 31
 R8
 !i10b 1
 R9
-Z29 !s90 -reportprogress|300|-93|../src/UNITE_TRAITEMENT.vhd|
-Z30 !s107 ../src/UNITE_TRAITEMENT.vhd|
+Z29 !s90 -reportprogress|300|-93|../src/multiplexeur.vhd|
+Z30 !s107 ../src/multiplexeur.vhd|
 !i113 1
 o-93
 R12
 Artl
-R13
-R19
 R2
 R3
 R4
-DEx4 work 16 unite_traitement 0 22 BI4hj2<Afk9AlL5nWYecH2
-l22
-L19
-VE=e;NXlYclP0HACBSceEi0
-!s100 GG3Im_Po3:3Rnb^_ACamA0
+Z31 DEx4 work 12 multiplexeur 0 22 fW@C;cGTjU4?k4LhU37683
+l17
+L16
+VD;Jl_k639=IIW7=5LPj482
+!s100 =ZfAGj]BNz9CnmZR571_=2
 R7
 31
 R8
@@ -171,6 +169,134 @@ R8
 R9
 R29
 R30
+!i113 1
+o-93
+R12
+Esign_extension
+Z32 w1748271717
+R2
+R3
+R4
+R0
+Z33 8../src/sign_extension.vhd
+Z34 F../src/sign_extension.vhd
+l0
+L5
+VO_6`[8_14Y[SB3?5ARLNl0
+!s100 @ZLN9jz]NUN[Lfaj2QdgT3
+R7
+31
+R8
+!i10b 1
+R9
+Z35 !s90 -reportprogress|300|-93|../src/sign_extension.vhd|
+Z36 !s107 ../src/sign_extension.vhd|
+!i113 1
+o-93
+R12
+Artl
+R2
+R3
+R4
+Z37 DEx4 work 14 sign_extension 0 22 O_6`[8_14Y[SB3?5ARLNl0
+l16
+L15
+VGNOSWA_WPVJK>4GY^I0Bo2
+!s100 5MozOBbgc>dLIiMQE7dLD1
+R7
+31
+R8
+!i10b 1
+R9
+R35
+R36
+!i113 1
+o-93
+R12
+Etb_unite_traitement
+Z38 w1748267202
+R2
+R3
+R4
+R0
+Z39 8tb_Unite_Traitement.vhd
+Z40 Ftb_Unite_Traitement.vhd
+l0
+L5
+Vn>d_eXkh@W2Ab3G:BX`=:1
+!s100 ikhicA?6KB>9Bj[BHS0OV3
+R7
+31
+R8
+!i10b 1
+R9
+Z41 !s90 -reportprogress|300|-93|tb_Unite_Traitement.vhd|
+Z42 !s107 tb_Unite_Traitement.vhd|
+!i113 1
+o-93
+R12
+Asim
+R2
+R3
+R4
+Z43 DEx4 work 19 tb_unite_traitement 0 22 n>d_eXkh@W2Ab3G:BX`=:1
+l29
+L8
+V42VQV2zm_iQS1YdGjb^[>0
+!s100 OUjIVgh^zJPIfHC9Z;dSo2
+R7
+31
+R8
+!i10b 1
+R9
+R41
+R42
+!i113 1
+o-93
+R12
+Eunite_traitement
+Z44 w1748271681
+R2
+R3
+R4
+R0
+Z45 8../src/UNITE_TRAITEMENT.vhd
+Z46 F../src/UNITE_TRAITEMENT.vhd
+l0
+L5
+VOROijB]5KWEOh5AVA9?Dh2
+!s100 4QY7ZNYCQ6[V0ELTC_YDM1
+R7
+31
+R8
+!i10b 1
+R9
+Z47 !s90 -reportprogress|300|-93|../src/UNITE_TRAITEMENT.vhd|
+Z48 !s107 ../src/UNITE_TRAITEMENT.vhd|
+!i113 1
+o-93
+R12
+Artl
+R25
+R37
+R31
+R13
+R19
+R2
+R3
+R4
+DEx4 work 16 unite_traitement 0 22 OROijB]5KWEOh5AVA9?Dh2
+l25
+L23
+VU;U[7?HkVk078D_VU=fSA0
+!s100 2T0:AXGP3jc2?KUD0lz0@3
+R7
+31
+R8
+!i10b 1
+R9
+R47
+R48
 !i113 1
 o-93
 R12

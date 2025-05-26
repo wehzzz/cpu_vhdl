@@ -2,25 +2,25 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
-entity Multiplexeur is
-    generic (
-        N : integer := 32
+ENTITY Multiplexeur IS
+    GENERIC (
+        N : INTEGER := 32
     );
-    Port (
-        A, B, : in STD_LOGIC_VECTOR(N-1 DOWNTO 0);
-        COM : in std_logic;
-        S : out STD_LOGIC_VECTOR(N-1 DOWNTO 0)
+    PORT (
+        A, B : IN STD_LOGIC_VECTOR(N - 1 DOWNTO 0);
+        COM : IN STD_LOGIC;
+        S : OUT STD_LOGIC_VECTOR(N - 1 DOWNTO 0)
     );
-end Multiplexeur;
+END Multiplexeur;
 
-architecture rtl of Multiplexeur is
-begin
-    process(A, B, COM)
-    begin
-        if COM = '0' then
+ARCHITECTURE rtl OF Multiplexeur IS
+BEGIN
+    PROCESS (A, B, COM)
+    BEGIN
+        IF COM = '0' THEN
             S <= A;
-        else
+        ELSE
             S <= B;
-        end if;
-    end process;
-end rtl;
+        END IF;
+    END PROCESS;
+END rtl;
