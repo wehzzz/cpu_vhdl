@@ -7,26 +7,24 @@ ENTITY Unite_Traitement IS
         CLK : IN STD_LOGIC;
         Reset : IN STD_LOGIC;
 
-        RA, RB, RW : IN STD_LOGIC_VECTOR(3 DOWNTO 0); -- Adresses registre
-        WE : IN STD_LOGIC; -- Write enable
+        RA, RB, RW : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        WE : IN STD_LOGIC;
 
-        OP : IN STD_LOGIC_VECTOR(2 DOWNTO 0); -- Code opération ALU
+        OP : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 
-        N, Z, C, V : OUT STD_LOGIC -- Flags
+        N, Z, C, V : OUT STD_LOGIC
     );
 END ENTITY;
 
 ARCHITECTURE rtl OF Unite_Traitement IS
-    -- Signaux internes
-    SIGNAL A, B, S : STD_LOGIC_VECTOR(31 DOWNTO 0);
-    SIGNAL T : STD_LOGIC_VECTOR(31 DOWNTO 0); -- Temporaire pour l'ALU
+    SIGNAL A, B, ALU_result : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
     -- Banc de Registres
     U_Registre : ENTITY work.Banc_Registres
         PORT MAP(
             CLK => CLK,
             Reset => Reset,
-            W => T,
+            W => ALU_result,
             RA => RA,
             RB => RB,
             RW => RW,
@@ -41,7 +39,7 @@ BEGIN
             OP => OP,
             A => A,
             B => B,
-            S => T,
+            S => ALU_result,
             N => N,
             Z => Z,
             C => C,

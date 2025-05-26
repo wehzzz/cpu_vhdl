@@ -17,7 +17,6 @@ ARCHITECTURE sim OF tb_Unite_Traitement IS
         );
     END COMPONENT;
 
-    -- Signaux
     SIGNAL CLK : STD_LOGIC := '0';
     SIGNAL Reset : STD_LOGIC := '1';
     SIGNAL RA, RB, RW : STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -28,8 +27,6 @@ ARCHITECTURE sim OF tb_Unite_Traitement IS
     CONSTANT CLK_PERIOD : TIME := 10 ns;
 
 BEGIN
-
-    -- Instance du DUT
     DUT : Unite_Traitement
     PORT MAP(
         CLK => CLK,
@@ -45,7 +42,6 @@ BEGIN
         V => V
     );
 
-    -- Processus d'horloge
     clk_process : PROCESS
     BEGIN
         WHILE TRUE LOOP
@@ -56,10 +52,8 @@ BEGIN
         END LOOP;
     END PROCESS;
 
-    -- Stimulus
     stim_proc : PROCESS
     BEGIN
-        -- Attendre 2 cycles pour le reset
         WAIT FOR 20 ns;
         Reset <= '0';
 
@@ -83,8 +77,34 @@ BEGIN
         WE <= '1';
         WAIT FOR CLK_PERIOD;
 
+        ----------------------------------------------------------------
+        -- Test 3 : R(2) = R(1) + R(15)
+        RA <= "0001"; -- R1
+        RB <= "1111"; -- R15
+        RW <= "0010"; -- R2
+        OP <= "000"; -- ADD
+        WE <= '1';
+        WAIT FOR CLK_PERIOD;
+
+        ----------------------------------------------------------------
+        -- Test 4 : R(3) = R(1) - R(15)
+        RA <= "0001"; -- R1
+        RB <= "1111"; -- R15
+        RW <= "0011"; -- R3
+        OP <= "010"; -- SUB
+        WE <= '1';
+        WAIT FOR CLK_PERIOD;
+
+        ----------------------------------------------------------------
+        -- Test 5 : R(5) = R(7) - R(15)
+        RA <= "0111"; -- R7 (valeur = 0 par défaut)
+        RB <= "1111"; -- R15
+        RW <= "0101"; -- R5
+        OP <= "010"; -- SUB
+        WE <= '1';
+        WAIT FOR CLK_PERIOD;
+
         WE <= '0';
-        -- Fin de simulation
         WAIT;
 
     END PROCESS;
