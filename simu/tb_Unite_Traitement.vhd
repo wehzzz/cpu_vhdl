@@ -3,30 +3,40 @@ USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
 ENTITY tb_Unite_Traitement IS
-END tb_Unite_Traitement;
+END ENTITY;
 
-ARCHITECTURE sim OF tb_Unite_Traitement IS
+ARCHITECTURE behavior OF tb_Unite_Traitement IS
+    -- Component under test
     COMPONENT Unite_Traitement IS
         PORT (
             CLK : IN STD_LOGIC;
             Reset : IN STD_LOGIC;
+
             RA, RB, RW : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
             WE : IN STD_LOGIC;
             OP : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+            ALUSrc, MemWr, WrSrc : IN STD_LOGIC;
+            Imm : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
             N, Z, C, V : OUT STD_LOGIC
         );
     END COMPONENT;
 
+    -- Signals
     SIGNAL CLK : STD_LOGIC := '0';
-    SIGNAL Reset : STD_LOGIC := '1';
+    SIGNAL Reset : STD_LOGIC := '0';
     SIGNAL RA, RB, RW : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    SIGNAL WE : STD_LOGIC := '0';
+    SIGNAL WE : STD_LOGIC;
     SIGNAL OP : STD_LOGIC_VECTOR(2 DOWNTO 0);
+    SIGNAL ALUSrc : STD_LOGIC;
+    SIGNAL MemWr : STD_LOGIC;
+    SIGNAL WrSrc : STD_LOGIC;
+    SIGNAL Imm : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL N, Z, C, V : STD_LOGIC;
 
     CONSTANT CLK_PERIOD : TIME := 10 ns;
 
 BEGIN
+    -- Instanciation de l’unité de traitement
     DUT : Unite_Traitement
     PORT MAP(
         CLK => CLK,
@@ -36,77 +46,146 @@ BEGIN
         RW => RW,
         WE => WE,
         OP => OP,
+        ALUSrc => ALUSrc,
+        MemWr => MemWr,
+        WrSrc => WrSrc,
+        Imm => Imm,
         N => N,
         Z => Z,
         C => C,
         V => V
     );
 
-    clk_process : PROCESS
+    -- Clock generation
+    CLK_PROCESS : PROCESS
     BEGIN
-        WHILE TRUE LOOP
+        WHILE true LOOP
             CLK <= '0';
-            WAIT FOR CLK_PERIOD / 2;
+            WAIT FOR CLK_PERIOD/2;
             CLK <= '1';
-            WAIT FOR CLK_PERIOD / 2;
+            WAIT FOR CLK_PERIOD/2;
         END LOOP;
     END PROCESS;
 
-    stim_proc : PROCESS
+    -- Stimulus
+    STIMULUS : PROCESS
     BEGIN
-        WAIT FOR 20 ns;
+        -- Reset
+        Reset <= '1';
+        WAIT FOR CLK_PERIOD;
         Reset <= '0';
 
-        ----------------------------------------------------------------
-        -- Test 1 : R(1) = R(15)
-        RA <= "1111"; -- R15
-        RB <= "0000"; -- Ne sert pas
-        RW <= "0001"; -- R1
-        OP <= "011"; -- 1 (copie de A vers S)
-        WE <= '1'; -- Active l'écriture
-
+        --------------------------------------------------
+        -- R1 := 0x10
+        RA <= "0000";
+        Imm <= X"10";
+        RW <= "0001";
+        OP <= "000";
+        ALUSrc <= '1';
+        WE <= '1';
+        WrSrc <= '0';
         WAIT FOR CLK_PERIOD;
-
-        ----------------------------------------------------------------
-        -- Test 2 : R(1) = R(1) + R(15)
         WE <= '0';
-        RA <= "0001"; -- R1
-        RB <= "1111"; -- R15
-        RW <= "0001"; -- R1
-        OP <= "000"; -- ADD
-        WE <= '1';
-        WAIT FOR CLK_PERIOD;
 
-        ----------------------------------------------------------------
-        -- Test 3 : R(2) = R(1) + R(15)
-        RA <= "0001"; -- R1
-        RB <= "1111"; -- R15
-        RW <= "0010"; -- R2
-        OP <= "000"; -- ADD
+        -- R2 := 0x20
+        RA <= "0000";
+        Imm <= X"20";
+        RW <= "0010";
+        OP <= "000";
+        ALUSrc <= '1';
         WE <= '1';
+        WrSrc <= '0';
         WAIT FOR CLK_PERIOD;
-
-        ----------------------------------------------------------------
-        -- Test 4 : R(3) = R(1) - R(15)
-        RA <= "0001"; -- R1
-        RB <= "1111"; -- R15
-        RW <= "0011"; -- R3
-        OP <= "010"; -- SUB
-        WE <= '1';
-        WAIT FOR CLK_PERIOD;
-
-        ----------------------------------------------------------------
-        -- Test 5 : R(5) = R(7) - R(15)
-        RA <= "0111"; -- R7 (valeur = 0 par défaut)
-        RB <= "1111"; -- R15
-        RW <= "0101"; -- R5
-        OP <= "010"; -- SUB
-        WE <= '1';
-        WAIT FOR CLK_PERIOD;
-
         WE <= '0';
-        WAIT;
 
+        --------------------------------------------------
+        -- Addition R3 := R1 + R2
+        RA <= "0001";
+        RB <= "0010";
+        RW <= "0011";
+        OP <= "000";
+        ALUSrc <= '0';
+        WE <= '1';
+        WrSrc <= '0';
+        WAIT FOR CLK_PERIOD;
+        WE <= '0';
+
+        --------------------------------------------------
+        -- Subtraction R4 := R2 - R1
+        RA <= "0010";
+        RB <= "0001";
+        RW <= "0100";
+        OP <= "001";
+        ALUSrc <= '0';
+        WE <= '1';
+        WrSrc <= '0';
+        WAIT FOR CLK_PERIOD;
+        WE <= '0';
+
+        --------------------------------------------------
+        -- ADDI: R5 := R2 + 0x05
+        RA <= "0010";
+        Imm <= X"05";
+        RW <= "0101";
+        OP <= "000";
+        ALUSrc <= '1';
+        WE <= '1';
+        WrSrc <= '0';
+        WAIT FOR CLK_PERIOD;
+        WE <= '0';
+
+        --------------------------------------------------
+        -- SUBI: R6 := R2 - 0x05
+        RA <= "0010";
+        Imm <= X"05";
+        RW <= "0110";
+        OP <= "001";
+        ALUSrc <= '1';
+        WE <= '1';
+        WrSrc <= '0';
+        WAIT FOR CLK_PERIOD;
+        WE <= '0';
+
+        --------------------------------------------------
+        -- Copy R1 -> R7
+        RA <= "0001";
+        RB <= "0001";
+        RW <= "0111";
+        OP <= "000";
+        ALUSrc <= '0';
+        WE <= '1';
+        WrSrc <= '0';
+        WAIT FOR CLK_PERIOD;
+        WE <= '0';
+
+        --------------------------------------------------
+        -- Write R2 to memory at address 0x30
+        RA <= "0010";
+        RB <= "0010";
+        OP <= "000"; -- use R2 as Addr + DataIn
+        ALUSrc <= '0';
+        MemWr <= '1';
+        WrSrc <= '0';
+        WE <= '0';
+        WAIT FOR CLK_PERIOD;
+        MemWr <= '0';
+
+        --------------------------------------------------
+        -- Read from memory at 0x30 into R8
+        RA <= "0010"; -- use R2 again for address
+        RB <= "0000"; -- ignored
+        OP <= "000";
+        ALUSrc <= '0';
+        WrSrc <= '1';
+        MemWr <= '0';
+        RW <= "1000";
+        WE <= '1';
+        WAIT FOR CLK_PERIOD;
+        WE <= '0';
+
+        --------------------------------------------------
+        WAIT FOR 10 * CLK_PERIOD;
+        ASSERT FALSE REPORT "Fin de simulation." SEVERITY FAILURE;
     END PROCESS;
 
 END ARCHITECTURE;

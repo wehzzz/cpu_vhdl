@@ -22,9 +22,9 @@ Vk:Q_SVP5QzAjFY0PSk<Vg0
 !s100 En2lGLWl46fnaOVLPH^NV1
 Z7 OV;C;10.5b;63
 31
-Z8 !s110 1748271721
+Z8 !s110 1748272973
 !i10b 1
-Z9 !s108 1748271721.000000
+Z9 !s108 1748272972.000000
 Z10 !s90 -reportprogress|300|-93|../src/ALU.vhd|
 Z11 !s107 ../src/ALU.vhd|
 !i113 1
@@ -65,9 +65,9 @@ R7
 31
 R8
 !i10b 1
-R9
-Z17 !s90 -reportprogress|300|-93|../src/register.vhd|
-Z18 !s107 ../src/register.vhd|
+Z17 !s108 1748272973.000000
+Z18 !s90 -reportprogress|300|-93|../src/register.vhd|
+Z19 !s107 ../src/register.vhd|
 !i113 1
 o-93
 R12
@@ -75,7 +75,7 @@ Artl
 R2
 R3
 R4
-Z19 DEx4 work 14 banc_registres 0 22 5dOiOaLMe8hm^Y]z@C1a@3
+Z20 DEx4 work 14 banc_registres 0 22 5dOiOaLMe8hm^Y]z@C1a@3
 l34
 L21
 VAg]:C1NNE@oT61]AzLhgR0
@@ -84,20 +84,20 @@ R7
 31
 R8
 !i10b 1
-R9
 R17
 R18
+R19
 !i113 1
 o-93
 R12
 Ememory
-Z20 w1748271443
+Z21 w1748271443
 R2
 R3
 R4
 R0
-Z21 8../src/memory.vhd
-Z22 F../src/memory.vhd
+Z22 8../src/memory.vhd
+Z23 F../src/memory.vhd
 l0
 L5
 VAJieE34kheQR0@Vb640>F1
@@ -106,9 +106,9 @@ R7
 31
 R8
 !i10b 1
-R9
-Z23 !s90 -reportprogress|300|-93|../src/memory.vhd|
-Z24 !s107 ../src/memory.vhd|
+R17
+Z24 !s90 -reportprogress|300|-93|../src/memory.vhd|
+Z25 !s107 ../src/memory.vhd|
 !i113 1
 o-93
 R12
@@ -116,7 +116,7 @@ Artl
 R2
 R3
 R4
-Z25 DEx4 work 6 memory 0 22 AJieE34kheQR0@Vb640>F1
+Z26 DEx4 work 6 memory 0 22 AJieE34kheQR0@Vb640>F1
 l28
 L16
 V4PIbA8mD=mj<JU8If^J722
@@ -125,20 +125,20 @@ R7
 31
 R8
 !i10b 1
-R9
-R23
+R17
 R24
+R25
 !i113 1
 o-93
 R12
 Emultiplexeur
-Z26 w1748271461
+Z27 w1748271461
 R2
 R3
 R4
 R0
-Z27 8../src/multiplexeur.vhd
-Z28 F../src/multiplexeur.vhd
+Z28 8../src/multiplexeur.vhd
+Z29 F../src/multiplexeur.vhd
 l0
 L5
 VfW@C;cGTjU4?k4LhU37683
@@ -147,9 +147,9 @@ R7
 31
 R8
 !i10b 1
-R9
-Z29 !s90 -reportprogress|300|-93|../src/multiplexeur.vhd|
-Z30 !s107 ../src/multiplexeur.vhd|
+R17
+Z30 !s90 -reportprogress|300|-93|../src/multiplexeur.vhd|
+Z31 !s107 ../src/multiplexeur.vhd|
 !i113 1
 o-93
 R12
@@ -157,7 +157,7 @@ Artl
 R2
 R3
 R4
-Z31 DEx4 work 12 multiplexeur 0 22 fW@C;cGTjU4?k4LhU37683
+Z32 DEx4 work 12 multiplexeur 0 22 fW@C;cGTjU4?k4LhU37683
 l17
 L16
 VD;Jl_k639=IIW7=5LPj482
@@ -166,20 +166,20 @@ R7
 31
 R8
 !i10b 1
-R9
-R29
+R17
 R30
+R31
 !i113 1
 o-93
 R12
 Esign_extension
-Z32 w1748271717
+Z33 w1748271717
 R2
 R3
 R4
 R0
-Z33 8../src/sign_extension.vhd
-Z34 F../src/sign_extension.vhd
+Z34 8../src/sign_extension.vhd
+Z35 F../src/sign_extension.vhd
 l0
 L5
 VO_6`[8_14Y[SB3?5ARLNl0
@@ -188,9 +188,9 @@ R7
 31
 R8
 !i10b 1
-R9
-Z35 !s90 -reportprogress|300|-93|../src/sign_extension.vhd|
-Z36 !s107 ../src/sign_extension.vhd|
+R17
+Z36 !s90 -reportprogress|300|-93|../src/sign_extension.vhd|
+Z37 !s107 ../src/sign_extension.vhd|
 !i113 1
 o-93
 R12
@@ -198,7 +198,7 @@ Artl
 R2
 R3
 R4
-Z37 DEx4 work 14 sign_extension 0 22 O_6`[8_14Y[SB3?5ARLNl0
+Z38 DEx4 work 14 sign_extension 0 22 O_6`[8_14Y[SB3?5ARLNl0
 l16
 L15
 VGNOSWA_WPVJK>4GY^I0Bo2
@@ -207,31 +207,50 @@ R7
 31
 R8
 !i10b 1
-R9
-R35
+R17
 R36
+R37
 !i113 1
 o-93
 R12
 Etb_unite_traitement
-Z38 w1748267202
+Z39 w1748272970
 R2
 R3
 R4
 R0
-Z39 8tb_Unite_Traitement.vhd
-Z40 Ftb_Unite_Traitement.vhd
+Z40 8tb_Unite_Traitement.vhd
+Z41 Ftb_Unite_Traitement.vhd
 l0
 L5
-Vn>d_eXkh@W2Ab3G:BX`=:1
-!s100 ikhicA?6KB>9Bj[BHS0OV3
+VoGEnna6zNUD_EOo]2_c<o1
+!s100 YUMB4XInWY<mIn0fzj2>k3
 R7
 31
 R8
 !i10b 1
-R9
-Z41 !s90 -reportprogress|300|-93|tb_Unite_Traitement.vhd|
-Z42 !s107 tb_Unite_Traitement.vhd|
+R17
+Z42 !s90 -reportprogress|300|-93|tb_Unite_Traitement.vhd|
+Z43 !s107 tb_Unite_Traitement.vhd|
+!i113 1
+o-93
+R12
+Abehavior
+R2
+R3
+R4
+DEx4 work 19 tb_unite_traitement 0 22 oGEnna6zNUD_EOo]2_c<o1
+l38
+L8
+VI9Tm<<9>dPPa^mmHQGbk53
+!s100 b581EQ8EgXR[K3666BaaN0
+R7
+31
+R8
+!i10b 1
+R17
+R42
+R43
 !i113 1
 o-93
 R12
@@ -239,21 +258,22 @@ Asim
 R2
 R3
 R4
-Z43 DEx4 work 19 tb_unite_traitement 0 22 n>d_eXkh@W2Ab3G:BX`=:1
+DEx4 work 19 tb_unite_traitement 0 22 n>d_eXkh@W2Ab3G:BX`=:1
 l29
 L8
 V42VQV2zm_iQS1YdGjb^[>0
 !s100 OUjIVgh^zJPIfHC9Z;dSo2
 R7
 31
-R8
+!s110 1748271721
 !i10b 1
-R9
-R41
+!s108 1748271721.000000
 R42
+R43
 !i113 1
 o-93
 R12
+w1748267202
 Eunite_traitement
 Z44 w1748271681
 R2
@@ -270,18 +290,18 @@ R7
 31
 R8
 !i10b 1
-R9
+R17
 Z47 !s90 -reportprogress|300|-93|../src/UNITE_TRAITEMENT.vhd|
 Z48 !s107 ../src/UNITE_TRAITEMENT.vhd|
 !i113 1
 o-93
 R12
 Artl
-R25
-R37
-R31
+R26
+R38
+R32
 R13
-R19
+R20
 R2
 R3
 R4
@@ -294,7 +314,7 @@ R7
 31
 R8
 !i10b 1
-R9
+R17
 R47
 R48
 !i113 1
