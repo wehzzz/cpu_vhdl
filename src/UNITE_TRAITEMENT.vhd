@@ -12,19 +12,23 @@ ENTITY Unite_Traitement IS
 
         OP : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 
+        ALUSrc, MemWr, WrSrc: IN STD_LOGIC; -- SIGNALS THAT WILL BE REPLACED LATER IN THE PROJECT
+
+        Imm : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+
         N, Z, C, V : OUT STD_LOGIC
     );
 END ENTITY;
 
 ARCHITECTURE rtl OF Unite_Traitement IS
-    SIGNAL A, B, ALU_result : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL A, B, ALU_out, Imm_extended, Mux1_out, Mem_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
     -- Banc de Registres
     U_Registre : ENTITY work.Banc_Registres
         PORT MAP(
             CLK => CLK,
             Reset => Reset,
-            W => ALU_result,
+            W => ALU_out,
             RA => RA,
             RB => RB,
             RW => RW,
@@ -38,12 +42,57 @@ BEGIN
         PORT MAP(
             OP => OP,
             A => A,
-            B => B,
-            S => ALU_result,
+            B => Mux1_out,
+            S => ALU_out,
             N => N,
             Z => Z,
             C => C,
             V => V
+        );
+
+    -- Multiplexeur
+    U_Multiplexeur1 : ENTITY work.Multiplexeur
+        GENERIC MAP(
+            N => 32
+        )
+        PORT MAP(
+            A => B,
+            B => Imm_extended,
+            COM => ALUSrc,
+            S => Mux1_out
+        );
+
+    -- Sign Extension
+    U_Sign_Extension : ENTITY work.Sign_Extension
+        GENERIC MAP(
+            N => 8
+        )
+        PORT MAP(
+            E => Imm,
+            S => Imm_extended
+        );
+
+    -- Memory
+    U_Memory : ENTITY work.Memory
+        PORT MAP(
+            CLK => CLK,
+            Reset => Reset,
+            Addr => ALU_out(5 DOWNTO 0),
+            DataIn => B,
+            DataOut => Mem_out,
+            WrEn => MemWr
+        );
+
+    -- Multiplexeur
+    U_Multiplexeur2 : ENTITY work.Multiplexeur
+        GENERIC MAP(
+            N => 32
+        )
+        PORT MAP(
+            A => ALU_out,
+            B => Mem_out,
+            COM => WrSrc,
+            S => W
         );
 
 END ARCHITECTURE;
