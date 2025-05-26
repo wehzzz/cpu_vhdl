@@ -16,6 +16,7 @@ ARCHITECTURE rtl OF ALU IS
     SIGNAL A_ext, B_ext, R_ext : SIGNED(32 DOWNTO 0);
     SIGNAL R : SIGNED(31 DOWNTO 0);
     SIGNAL carry_bit, overflow_bit : STD_LOGIC;
+    SIGNAL F : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
     -- Cast inputs as signed
     A_signed <= signed(A);
@@ -25,12 +26,12 @@ BEGIN
     A_ext <= resize(A_signed, 33);
     B_ext <= resize(B_signed, 33);
 
-    PROCESS (OP, A_signed, B_signed, A_ext, B_ext)
+    PROCESS (OP, A_signed, B_signed, A_ext, B_ext, R, R_ext)
     BEGIN
         carry_bit <= '0';
         overflow_bit <= '0';
-        R_ext <= (OTHERS => '0'); -- Initialize R_ext
-        R <= (OTHERS => '0'); -- Initialize R
+        R_ext <= (OTHERS => '0');
+        R <= (OTHERS => '0');
 
         CASE OP IS
             WHEN "000" => -- ADD
@@ -70,6 +71,7 @@ BEGIN
 
     -- Sorties
     S <= STD_LOGIC_VECTOR(R);
+    F <= STD_LOGIC_VECTOR(R_ext(31 DOWNTO 0));
     N <= R(31);
     Z <= '1' WHEN R = 0 ELSE
         '0';
