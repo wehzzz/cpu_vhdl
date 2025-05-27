@@ -12,13 +12,13 @@ ENTITY command_register IS
     );
 END command_register;
 
-ARCHITECTURE rtl OF memory IS
+ARCHITECTURE rtl OF command_register IS
     SIGNAL reg : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
 BEGIN
     PROCESS (CLK, Reset)
     BEGIN
         IF Reset = '1' THEN
-            reg <= others => '0';
+            reg <= (OTHERS => '0');
         ELSIF rising_edge(CLK) THEN
             IF WE = '1' THEN
                 reg <= DataIn;

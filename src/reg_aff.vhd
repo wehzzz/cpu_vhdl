@@ -1,23 +1,27 @@
-entity RegAff is
-  port (
-    Clk   : in  std_logic;
-    Reset : in  std_logic;
-    En    : in  std_logic;
-    D     : in  std_logic_vector(31 downto 0);
-    Q     : out STD_LOGIC_VECTOR(23 DOWNTO 0)
-  );
-end entity RegAff;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 
-architecture rtl of RegAff is
-begin
-  process (Clk, Reset)
-  begin
-    if Reset = '1' then
-      Q <= (others => '0');
-    elsif rising_edge(Clk) then
-      if En = '1' then
-        Q <= D(23 downto 0);
-      end if;
-    end if;
-  end process;
-end architecture rtl;
+ENTITY RegAff IS
+  PORT (
+    Clk : IN STD_LOGIC;
+    Reset : IN STD_LOGIC;
+    En : IN STD_LOGIC;
+    D : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    Q : OUT STD_LOGIC_VECTOR(23 DOWNTO 0)
+  );
+END ENTITY RegAff;
+
+ARCHITECTURE rtl OF RegAff IS
+BEGIN
+  PROCESS (Clk, Reset)
+  BEGIN
+    IF Reset = '1' THEN
+      Q <= (OTHERS => '0');
+    ELSIF rising_edge(Clk) THEN
+      IF En = '1' THEN
+        Q <= D(23 DOWNTO 0);
+      END IF;
+    END IF;
+  END PROCESS;
+END ARCHITECTURE rtl;

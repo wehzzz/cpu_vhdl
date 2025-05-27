@@ -5,13 +5,13 @@ USE IEEE.NUMERIC_STD.ALL;
 ENTITY CPU IS
     PORT (
         CLK : IN STD_LOGIC;
-        Reset : IN STD_LOGIC
-        HEX0 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
-		HEX1 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
-		HEX2 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
-		HEX3 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
-		HEX4 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
-		HEX5 :  OUT  STD_LOGIC_VECTOR(0 TO 6)
+        Reset : IN STD_LOGIC;
+        HEX0 : OUT STD_LOGIC_VECTOR(0 TO 6);
+        HEX1 : OUT STD_LOGIC_VECTOR(0 TO 6);
+        HEX2 : OUT STD_LOGIC_VECTOR(0 TO 6);
+        HEX3 : OUT STD_LOGIC_VECTOR(0 TO 6);
+        HEX4 : OUT STD_LOGIC_VECTOR(0 TO 6);
+        HEX5 : OUT STD_LOGIC_VECTOR(0 TO 6)
     );
 END ENTITY;
 
@@ -32,7 +32,9 @@ ARCHITECTURE rtl OF CPU IS
     SIGNAL nPCSel, RegWr, ALUSrc, PSREn, MemWr, WrSrc, RegSel, RegAff : STD_LOGIC;
     SIGNAL ALUCtr : STD_LOGIC_VECTOR(2 DOWNTO 0);
 
-    SiGNAL B_bus : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL B_bus : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL Mux_out : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL reg_display : STD_LOGIC_VECTOR(23 DOWNTO 0);
 
 BEGIN
 
@@ -72,7 +74,7 @@ BEGIN
     -- good
     U_Multiplexeur : ENTITY work.Multiplexeur
         GENERIC MAP(
-            N => 32
+            N => 4
         )
         PORT MAP(
             A => Rm,
@@ -112,7 +114,6 @@ BEGIN
             PSREn => PSREn,
             PSR => PSR
         );
-    SIGNAL reg_display : STD_LOGIC_VECTOR(23 DOWNTO 0);
 
     U_Display_Register : ENTITY work.RegAff
         GENERIC MAP(
@@ -127,12 +128,12 @@ BEGIN
         );
 
     seven_seg : FOR i IN 0 TO 5 GENERATE
-        seven_seg_inst : ENTITY work.SEVEN_SEG 
-        PORT MAP (
-            Pol => 1,
-            Segout => HEX(i)(0 TO 6),
-            Data => reg_display(4*(i+1)-1 DOWNTO 4*i)
-        );
+        seven_seg_inst : ENTITY work.SEVEN_SEG
+            PORT MAP(
+                Pol => 1,
+                Segout => HEX(i)(0 TO 6),
+                Data => reg_display(4 * (i + 1) - 1 DOWNTO 4 * i)
+            );
     END GENERATE;
 
 END ARCHITECTURE;

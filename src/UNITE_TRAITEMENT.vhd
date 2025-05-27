@@ -18,7 +18,7 @@ ENTITY Unite_Traitement IS
 
         N, Z, C, V : OUT STD_LOGIC;
 
-        B_out: STD_LOGIC_VECTOR(31 DOWNTO 0)
+        B_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
     );
 END ENTITY;
 
@@ -28,7 +28,7 @@ BEGIN
 
     -- Assign B_out to the output B
     B_out <= B;
-    
+
     -- Banc de Registres
     U_Registre : ENTITY work.Banc_Registres
         PORT MAP(
