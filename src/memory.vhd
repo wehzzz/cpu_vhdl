@@ -19,8 +19,11 @@ ARCHITECTURE rtl OF memory IS
         VARIABLE result : table;
     BEGIN
         FOR i IN 63 DOWNTO 0 LOOP
-            result(i) := (OTHERS => '0');
-        END LOOP;
+            IF (i >= 16#20# AND i <= 16#2A#) THEN
+                result(i) := std_logic_vector(to_unsigned(i-16#1F#, 32));  -- Values 1 to 11
+            ELSE
+                result(i) := (OTHERS => '0');
+            END IF;        END LOOP;
         RETURN result;
     END init_banc;
     SIGNAL Banc : table := init_banc;
