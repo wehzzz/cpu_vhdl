@@ -16,13 +16,19 @@ ENTITY Unite_Traitement IS
 
         Imm : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 
-        N, Z, C, V : OUT STD_LOGIC
+        N, Z, C, V : OUT STD_LOGIC;
+
+        B_out: STD_LOGIC_VECTOR(31 DOWNTO 0)
     );
 END ENTITY;
 
 ARCHITECTURE rtl OF Unite_Traitement IS
     SIGNAL A, B, ALU_out, Imm_extended, Mux1_out, Mux2_out, Mem_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
+
+    -- Assign B_out to the output B
+    B_out <= B;
+    
     -- Banc de Registres
     U_Registre : ENTITY work.Banc_Registres
         PORT MAP(

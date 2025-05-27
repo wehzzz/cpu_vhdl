@@ -6,6 +6,12 @@ ENTITY CPU IS
     PORT (
         CLK : IN STD_LOGIC;
         Reset : IN STD_LOGIC
+        HEX0 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
+		HEX1 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
+		HEX2 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
+		HEX3 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
+		HEX4 :  OUT  STD_LOGIC_VECTOR(0 TO 6);
+		HEX5 :  OUT  STD_LOGIC_VECTOR(0 TO 6)
     );
 END ENTITY;
 
@@ -13,17 +19,20 @@ ARCHITECTURE rtl OF CPU IS
 
     -- Signaux internes
     SIGNAL Instruction : STD_LOGIC_VECTOR(31 DOWNTO 0);
-    SIGNAL Offset : STD_LOGIC_VECTOR(23 DOWNTO 0);
+    SIGNAL Imm24 : STD_LOGIC_VECTOR(23 DOWNTO 0);
     SIGNAL Imm8 : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL PSR : STD_LOGIC_VECTOR(31 DOWNTO 0); -- registre d’état, simulation simple ici
+    SIGNAL PSR : STD_LOGIC_VECTOR(31 DOWNTO 0);
     SIGNAL N, Z, C, V : STD_LOGIC;
 
     -- Adresses de registre
-    SIGNAL RA, RB, RW : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL Rn, Rd1, Rd2 : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL Rm : STD_LOGIC_VECTOR(11 DOWNTO 0);
 
     -- Signaux de contrôle (issus du décodeur)
     SIGNAL nPCSel, RegWr, ALUSrc, PSREn, MemWr, WrSrc, RegSel, RegAff : STD_LOGIC;
     SIGNAL ALUCtr : STD_LOGIC_VECTOR(2 DOWNTO 0);
+
+    SiGNAL B_bus : STD_LOGIC_VECTOR(31 DOWNTO 0);
 
 BEGIN
 
@@ -33,10 +42,11 @@ BEGIN
             CLK => CLK,
             Reset => Reset,
             nPCsel => nPCSel,
-            Offset => Offset,
+            Offset => Imm24,
             Instruction => Instruction
         );
 
+    -- good
     U_Decodeur : ENTITY work.instruction_decryptor
         PORT MAP(
             InstructionIn => Instruction,
@@ -53,30 +63,32 @@ BEGIN
         );
 
     -- Extraction des registres et champs immédiats de l’instruction
-    RW <= Instruction(15 DOWNTO 12);
-    RA <= Instruction(19 DOWNTO 16);
-    RB <= Instruction(3 DOWNTO 0);
-    Offset <= Instruction(23 DOWNTO 0);
+    Rd1 <= Instruction(15 DOWNTO 12);
+    Rn <= Instruction(19 DOWNTO 16);
+    Rm <= Instruction(11 DOWNTO 0);
+    Imm24 <= Instruction(23 DOWNTO 0);
     Imm8 <= Instruction(7 DOWNTO 0);
 
+    -- good
     U_Multiplexeur : ENTITY work.Multiplexeur
         GENERIC MAP(
             N => 32
         )
         PORT MAP(
             A => Rm,
-            B => Rd,
+            B => Rd2,
             COM => RegSel,
             S => Mux_out
         );
 
+    -- good
     U_Traitement : ENTITY work.Unite_Traitement
         PORT MAP(
             CLK => CLK,
             Reset => Reset,
-            RA => RA,
+            RA => Rn,
             RB => Mux_out,
-            RW => RW,
+            RW => Rd1,
             WE => RegWr,
             OP => ALUCtr,
             ALUSrc => ALUSrc,
@@ -86,7 +98,8 @@ BEGIN
             N => N,
             Z => Z,
             C => C,
-            V => V
+            V => V,
+            B_out => B_bus
         );
 
     -- good
@@ -99,5 +112,27 @@ BEGIN
             PSREn => PSREn,
             PSR => PSR
         );
+    SIGNAL reg_display : STD_LOGIC_VECTOR(23 DOWNTO 0);
+
+    U_Display_Register : ENTITY work.RegAff
+        GENERIC MAP(
+            N => 16
+        )
+        PORT MAP(
+            CLK => CLK,
+            Reset => Reset,
+            En => RegAff,
+            D => B_bus,
+            Q => reg_display
+        );
+
+    seven_seg : FOR i IN 0 TO 5 GENERATE
+        seven_seg_inst : ENTITY work.SEVEN_SEG 
+        PORT MAP (
+            Pol => 1,
+            Segout => HEX(i)(0 TO 6),
+            Data => reg_display(4*(i+1)-1 DOWNTO 4*i)
+        );
+    END GENERATE;
 
 END ARCHITECTURE;
