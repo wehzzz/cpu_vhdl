@@ -11,7 +11,7 @@ END register_PSR;
 
 ARCHITECTURE rtl OF instruction_decryptor IS
 BEGIN
-    PROCESS (N, Z, C, V)
+    PROCESS (N, Z, C, V, PSREn)
     BEGIN
         IF PSREn = '1' THEN
             PSR(31) <= N;
