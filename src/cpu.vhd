@@ -25,8 +25,7 @@ ARCHITECTURE rtl OF CPU IS
     SIGNAL N, Z, C, V : STD_LOGIC;
 
     -- Adresses de registre
-    SIGNAL Rn, Rd1, Rd2 : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    SIGNAL Rm : STD_LOGIC_VECTOR(11 DOWNTO 0);
+    SIGNAL Rn, Rd, Rm : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
     -- Signaux de contrôle (issus du décodeur)
     SIGNAL nPCSel, RegWr, ALUSrc, PSREn, MemWr, WrSrc, RegSel, RegAff : STD_LOGIC;
@@ -75,9 +74,9 @@ BEGIN
         );
 
     -- Extraction des registres et champs immédiats de l’instruction
-    Rd1 <= Instruction(15 DOWNTO 12);
+    Rd <= Instruction(15 DOWNTO 12);
     Rn <= Instruction(19 DOWNTO 16);
-    Rm <= Instruction(11 DOWNTO 0);
+    Rm <= Instruction(3 DOWNTO 0);
     Imm24 <= Instruction(23 DOWNTO 0);
     Imm8 <= Instruction(7 DOWNTO 0);
 
@@ -88,7 +87,7 @@ BEGIN
         )
         PORT MAP(
             A => Rm,
-            B => Rd2,
+            B => Rd,
             COM => RegSel,
             S => Mux_out
         );
@@ -100,7 +99,7 @@ BEGIN
             Reset => Reset,
             RA => Rn,
             RB => Mux_out,
-            RW => Rd1,
+            RW => Rd,
             WE => RegWr,
             OP => ALUCtr,
             ALUSrc => ALUSrc,
