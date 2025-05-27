@@ -36,7 +36,17 @@ ARCHITECTURE rtl OF CPU IS
     SIGNAL Mux_out : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL reg_display : STD_LOGIC_VECTOR(23 DOWNTO 0);
 
+    type HEX_array is array (0 to 5) of std_logic_vector(0 to 6);
+	signal HEX : HEX_array;
+
 BEGIN
+    -- Assignation des sorties HEX
+    HEX0 <= HEX(0);
+    HEX1 <= HEX(1);
+    HEX2 <= HEX(2);
+    HEX3 <= HEX(3);
+    HEX4 <= HEX(4);
+    HEX5 <= HEX(5);
 
     -- good
     U_Gestion : ENTITY work.Unite_Gestion_Instructions
