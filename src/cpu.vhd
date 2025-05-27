@@ -36,8 +36,8 @@ ARCHITECTURE rtl OF CPU IS
     SIGNAL Mux_out : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL reg_display : STD_LOGIC_VECTOR(23 DOWNTO 0);
 
-    type HEX_array is array (0 to 5) of std_logic_vector(0 to 6);
-	signal HEX : HEX_array;
+    TYPE HEX_array IS ARRAY (0 TO 5) OF STD_LOGIC_VECTOR(0 TO 6);
+    SIGNAL HEX : HEX_array;
 
 BEGIN
     -- Assignation des sorties HEX
@@ -140,7 +140,7 @@ BEGIN
     seven_seg : FOR i IN 0 TO 5 GENERATE
         seven_seg_inst : ENTITY work.SEVEN_SEG
             PORT MAP(
-                Pol => 1,
+                Pol => '1',
                 Segout => HEX(i)(0 TO 6),
                 Data => reg_display(4 * (i + 1) - 1 DOWNTO 4 * i)
             );
