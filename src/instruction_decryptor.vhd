@@ -14,30 +14,36 @@ architecture rtl of instruction_decryptor is
     type enum_instruction is (MOV, ADDi, ADDr, CMP, LDR, STR, BAL, BLT);
     signal instr_courante: enum_instruction;
 begin
-    process(InstructionIn)
+    process(InstructionIn, PSR)
         variable opcode: STD_LOGIC_VECTOR(3 DOWNTO 0);
     begin
-        opcode := InstructionIn(24 DOWNTO 21);
-        case opcode is
-            when "1101" => -- MOV
-                instr_courante <= MOV;
-            when "0100" => -- ADDi
-                instr_courante <= ADDi;
-            when "0100" => -- ADDr
-                instr_courante <= ADDr;
-            when "0011" => -- CMP
-                instr_courante <= CMP;
-            when "0100" => -- LDR
-                instr_courante <= LDR;
-            when "0101" => -- STR
-                instr_courante <= STR;
-            when "1010" => -- BAL
-                instr_courante <= BAL;
-            when "1010" => -- BLT
+        if InstructionIn(27 DOWNTO 25) = '101' then
+            if InstructionIn(31 DOWNTO 28) = '1011' then
                 instr_courante <= BLT;
-            when others =>
-                instr_courante <= MOV; -- Default case
-        end case;
+            else
+                instr_courante <= BAL;
+            end if;
+        elsif InstructionIn(27 DOWTO 26) = '01' then
+            if InstructionIn(20) = '0' then
+                instr_courante <= STR;
+            else
+                instr_courante <= LDR;
+            end if;
+        else
+            opcode := InstructionIn(24 DOWNTO 21);
+            case opcode is
+                when "1101" =>
+                    instr_courante <= MOV;
+                when "0100" =>
+                    if InstructionIn(25) = '0' then
+                        instr_courante <= ADDr;
+                    else
+                        instr_courante <= ADDi;
+                    end if;
+                when others => 
+                    instr_courante <= MOV;
+            end case;
+        end if;
 
         case instr_courante is
             when MOV =>
@@ -96,7 +102,7 @@ begin
                 RegAff <= '0';
 
             when BLT =>
-                nPCSel <= N;
+                nPCSel <= PSR(31);
                 RegWR  <= '0';
                 ALUSrc <= '0';
                 ALUCtr <= '000';
