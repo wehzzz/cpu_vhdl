@@ -23,12 +23,12 @@ ARCHITECTURE sim OF tb_cpu IS
     SIGNAL CLK : STD_LOGIC := '0';
     SIGNAL Reset : STD_LOGIC := '1';
     SIGNAL HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : STD_LOGIC_VECTOR(0 TO 6);
-    
+
     CONSTANT CLK_PERIOD : TIME := 10 ns;
 
 BEGIN
     -- Instantiate CPU
-    UUT: CPU PORT MAP (
+    UUT : CPU PORT MAP(
         CLK => CLK,
         Reset => Reset,
         HEX0 => HEX0,
@@ -40,9 +40,9 @@ BEGIN
     );
 
     -- Clock process
-    clk_process: PROCESS
+    clk_process : PROCESS
     BEGIN
-        WHILE NOW < 1000 ns LOOP  -- Run for 1000 ns
+        WHILE NOW < 1000 ns LOOP -- Run for 1000 ns
             CLK <= '0';
             WAIT FOR CLK_PERIOD/2;
             CLK <= '1';
@@ -52,11 +52,11 @@ BEGIN
     END PROCESS;
 
     -- Stimulus process
-    stim_proc: PROCESS
+    stim_proc : PROCESS
     BEGIN
         -- Initial reset
         Reset <= '1';
-        WAIT FOR CLK_PERIOD*2;
+        WAIT FOR CLK_PERIOD * 2;
         Reset <= '0';
 
         -- Initialize Data Memory (0x20 to 0x2A)
@@ -64,7 +64,7 @@ BEGIN
         -- The actual data initialization should be in the instruction memory file
 
         -- Wait for program execution
-        WAIT FOR CLK_PERIOD * 50;  -- Wait enough cycles for program to complete
+        WAIT FOR CLK_PERIOD * 50; -- Wait enough cycles for program to complete
 
         -- Program should complete here
         -- The result should be visible on the HEX displays
@@ -75,16 +75,16 @@ BEGIN
     END PROCESS;
 
     -- Monitor process to display results
-    monitor_proc: PROCESS(CLK)
+    monitor_proc : PROCESS (CLK)
     BEGIN
         IF rising_edge(CLK) THEN
-            REPORT "HEX displays: " & 
-                  integer'image(to_integer(unsigned(HEX5))) & 
-                  integer'image(to_integer(unsigned(HEX4))) &
-                  integer'image(to_integer(unsigned(HEX3))) &
-                  integer'image(to_integer(unsigned(HEX2))) &
-                  integer'image(to_integer(unsigned(HEX1))) &
-                  integer'image(to_integer(unsigned(HEX0)));
+            REPORT "HEX displays: " &
+                INTEGER'image(to_integer(unsigned(HEX5))) &
+                INTEGER'image(to_integer(unsigned(HEX4))) &
+                INTEGER'image(to_integer(unsigned(HEX3))) &
+                INTEGER'image(to_integer(unsigned(HEX2))) &
+                INTEGER'image(to_integer(unsigned(HEX1))) &
+                INTEGER'image(to_integer(unsigned(HEX0)));
         END IF;
     END PROCESS;
 
