@@ -70,22 +70,22 @@ BEGIN
         -- The result should be visible on the HEX displays
 
         -- End simulation
-        ASSERT FALSE REPORT "Test completed" SEVERITY NOTE;
+        ASSERT FALSE REPORT "Test completed" SEVERITY FAILURE;
         WAIT;
     END PROCESS;
 
     -- Monitor process to display results
-    monitor_proc: PROCESS(CLK)
-    BEGIN
-        IF rising_edge(CLK) THEN
-            REPORT "HEX displays: " & 
-                  integer'image(to_integer(unsigned(HEX5))) & 
-                  integer'image(to_integer(unsigned(HEX4))) &
-                  integer'image(to_integer(unsigned(HEX3))) &
-                  integer'image(to_integer(unsigned(HEX2))) &
-                  integer'image(to_integer(unsigned(HEX1))) &
-                  integer'image(to_integer(unsigned(HEX0)));
-        END IF;
-    END PROCESS;
+    -- monitor_proc: PROCESS(CLK)
+    -- BEGIN
+        -- IF rising_edge(CLK) THEN
+            -- REPORT "HEX displays: " & 
+                --   integer'image(to_integer(unsigned(HEX5))) & 
+                --   integer'image(to_integer(unsigned(HEX4))) &
+                --   integer'image(to_integer(unsigned(HEX3))) &
+                --   integer'image(to_integer(unsigned(HEX2))) &
+                --   integer'image(to_integer(unsigned(HEX1))) &
+                --   integer'image(to_integer(unsigned(HEX0)));
+        -- END IF;
+    -- END PROCESS;
 
 END ARCHITECTURE;

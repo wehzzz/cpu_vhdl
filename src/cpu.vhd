@@ -125,9 +125,6 @@ BEGIN
         );
 
     U_Display_Register : ENTITY work.RegAff
-        GENERIC MAP(
-            N => 16
-        )
         PORT MAP(
             CLK => CLK,
             Reset => Reset,

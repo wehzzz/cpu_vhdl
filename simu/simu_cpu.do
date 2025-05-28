@@ -17,11 +17,7 @@ vcom -93 ../src/cpu.vhd
 vcom -93 tb_cpu.vhd
 vsim -novopt tb_cpu
 
-add wave -position insertpoint sim:/tb_cpu/*
 add wave -position insertpoint sim:/tb_cpu/UUT/*
 add wave -position insertpoint sim:/tb_cpu/UUT/U_Traitement/U_Registre/Banc
-add wave -position insertpoint sim:/tb_cpu/UUT/U_Traitement/U_Registre/*
-add wave -position insertpoint sim:/tb_cpu/UUT/U_Traitement/*
 add wave -position insertpoint sim:/tb_cpu/UUT/U_Traitement/U_Memory/Banc
-add wave -position insertpoint sim:/tb_cpu/UUT/U_Traitement/U_Memory/*
 run -a
