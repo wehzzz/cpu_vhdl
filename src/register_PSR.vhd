@@ -14,10 +14,6 @@ ARCHITECTURE rtl OF register_PSR IS
 BEGIN
     PROCESS (N, Z, C, V, PSREn, PSR_temp)
     BEGIN
-        PSR_temp(31) <= PSR(31);
-        PSR_temp(30) <= PSR(30);
-        PSR_temp(29) <= PSR(29);
-        PSR_temp(28) <= PSR(28);
         IF PSREn = '1' THEN
             PSR_temp(31) <= N;
             PSR_temp(30) <= Z;

@@ -15,7 +15,7 @@ ARCHITECTURE rtl OF instruction_decryptor IS
     TYPE enum_instruction IS (MOV, ADDi, ADDr, CMP, LDR, STR, BAL, BLT);
     SIGNAL instr_courante : enum_instruction;
 BEGIN
-    PROCESS (InstructionIn, PSR)
+    PROCESS (InstructionIn, PSR, instr_courante)
         VARIABLE opcode : STD_LOGIC_VECTOR(3 DOWNTO 0);
     BEGIN
         IF InstructionIn(27 DOWNTO 25) = "101" THEN
@@ -33,6 +33,8 @@ BEGIN
         ELSE
             opcode := InstructionIn(24 DOWNTO 21);
             CASE opcode IS
+                WHEN "1010" =>
+                    instr_courante <= CMP;
                 WHEN "1101" =>
                     instr_courante <= MOV;
                 WHEN "0100" =>
