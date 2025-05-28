@@ -21,7 +21,7 @@ ARCHITECTURE sim OF tb_cpu IS
 
     -- Test bench signals
     SIGNAL CLK : STD_LOGIC := '0';
-    SIGNAL Reset : STD_LOGIC := '1';
+    SIGNAL Reset : STD_LOGIC := '0';
     SIGNAL HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : STD_LOGIC_VECTOR(0 TO 6);
 
     CONSTANT CLK_PERIOD : TIME := 10 ns;
@@ -55,9 +55,9 @@ BEGIN
     stim_proc : PROCESS
     BEGIN
         -- Initial reset
-        Reset <= '1';
-        WAIT FOR CLK_PERIOD * 2;
         Reset <= '0';
+        WAIT FOR CLK_PERIOD * 2;
+        Reset <= '1';
 
         -- Initialize Data Memory (0x20 to 0x2A)
         -- This will be done through the instruction memory
