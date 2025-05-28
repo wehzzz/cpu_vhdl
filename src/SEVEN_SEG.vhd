@@ -25,18 +25,14 @@ LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 USE IEEE.numeric_std.ALL;
 
--- ------------------------------
 ENTITY SEVEN_SEG IS
-  -- ------------------------------
   PORT (
-    Data : IN STD_LOGIC_VECTOR(3 DOWNTO 0); -- Expected within 0 .. 9
-    Pol : IN STD_LOGIC; -- '0' if active LOW
-    Segout : OUT STD_LOGIC_VECTOR(1 TO 7)); -- Segments A, B, C, D, E, F, G
+    Data : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    Pol : IN STD_LOGIC;
+    Segout : OUT STD_LOGIC_VECTOR(1 TO 7));
 END ENTITY SEVEN_SEG;
 
--- -----------------------------------------------
 ARCHITECTURE COMB OF SEVEN_SEG IS
-  -- ------------------------------------------------
 
 BEGIN
   PROCESS (Data, Pol)

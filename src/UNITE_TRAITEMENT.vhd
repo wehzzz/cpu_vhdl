@@ -12,7 +12,7 @@ ENTITY Unite_Traitement IS
 
         OP : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 
-        ALUSrc, MemWr, WrSrc : IN STD_LOGIC; -- SIGNALS THAT WILL BE REPLACED LATER IN THE PROJECT
+        ALUSrc, MemWr, WrSrc : IN STD_LOGIC;
 
         Imm : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 
@@ -26,10 +26,8 @@ ARCHITECTURE rtl OF Unite_Traitement IS
     SIGNAL A, B, ALU_out, Imm_extended, Mux1_out, Mux2_out, Mem_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
 
-    -- Assign B_out to the output B
     B_out <= B;
 
-    -- Banc de Registres
     U_Registre : ENTITY work.Banc_Registres
         PORT MAP(
             CLK => CLK,
@@ -43,7 +41,6 @@ BEGIN
             B => B
         );
 
-    -- ALU
     U_ALU : ENTITY work.ALU
         PORT MAP(
             OP => OP,
@@ -56,7 +53,6 @@ BEGIN
             V => V
         );
 
-    -- Multiplexeur
     U_Multiplexeur1 : ENTITY work.Multiplexeur
         GENERIC MAP(
             N => 32
@@ -68,7 +64,6 @@ BEGIN
             S => Mux1_out
         );
 
-    -- Sign Extension
     U_Sign_Extension : ENTITY work.Sign_Extension
         GENERIC MAP(
             N => 8
@@ -78,7 +73,6 @@ BEGIN
             S => Imm_extended
         );
 
-    -- Memory
     U_Memory : ENTITY work.Memory
         PORT MAP(
             CLK => CLK,
@@ -89,7 +83,6 @@ BEGIN
             WrEn => MemWr
         );
 
-    -- Multiplexeur
     U_Multiplexeur2 : ENTITY work.Multiplexeur
         GENERIC MAP(
             N => 32

@@ -17,7 +17,6 @@ ARCHITECTURE sim OF tb_cpu IS
         );
     END COMPONENT;
 
-    -- Test bench signals
     SIGNAL CLK : STD_LOGIC := '0';
     SIGNAL Reset : STD_LOGIC := '0';
     SIGNAL HEX0, HEX1, HEX2, HEX3 : STD_LOGIC_VECTOR(0 TO 6);
@@ -25,7 +24,6 @@ ARCHITECTURE sim OF tb_cpu IS
     CONSTANT CLK_PERIOD : TIME := 10 ns;
 
 BEGIN
-    -- Instantiate CPU
     UUT : CPU PORT MAP(
         CLK => CLK,
         Reset => Reset,
@@ -35,10 +33,9 @@ BEGIN
         HEX3 => HEX3
     );
 
-    -- Clock process
     clk_process : PROCESS
     BEGIN
-        WHILE NOW < 1000 ns LOOP -- Run for 1000 ns
+        WHILE NOW < 1000 ns LOOP
             CLK <= '0';
             WAIT FOR CLK_PERIOD/2;
             CLK <= '1';
@@ -47,25 +44,14 @@ BEGIN
         WAIT;
     END PROCESS;
 
-    -- Stimulus process
     stim_proc : PROCESS
     BEGIN
-        -- Initial reset
         Reset <= '0';
         WAIT FOR CLK_PERIOD * 2;
         Reset <= '1';
 
-        -- Initialize Data Memory (0x20 to 0x2A)
-        -- This will be done through the instruction memory
-        -- The actual data initialization should be in the instruction memory file
+        WAIT FOR CLK_PERIOD * 1000;
 
-        -- Wait for program execution
-        WAIT FOR CLK_PERIOD * 1000; -- Wait enough cycles for program to complete
-
-        -- Program should complete here
-        -- The result should be visible on the HEX displays
-
-        -- End simulation
         ASSERT FALSE REPORT "Test completed" SEVERITY FAILURE;
         WAIT;
     END PROCESS;

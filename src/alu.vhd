@@ -18,11 +18,9 @@ ARCHITECTURE rtl OF ALU IS
     SIGNAL carry_bit, overflow_bit : STD_LOGIC;
     SIGNAL F : STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
-    -- Cast inputs as signed
     A_signed <= signed(A);
     B_signed <= signed(B);
 
-    -- Sign extension (using resize)
     A_ext <= resize(A_signed, 33);
     B_ext <= resize(B_signed, 33);
 
@@ -34,34 +32,34 @@ BEGIN
         R <= (OTHERS => '0');
 
         CASE OP IS
-            WHEN "000" => -- ADD
+            WHEN "000" =>
                 R_ext <= A_ext + B_ext;
                 R <= R_ext(31 DOWNTO 0);
                 carry_bit <= R_ext(32);
                 overflow_bit <= (NOT (A_signed(31) XOR B_signed(31))) AND (A_signed(31) XOR R(31));
 
-            WHEN "001" => -- B
+            WHEN "001" =>
                 R <= B_signed;
 
-            WHEN "010" => -- SUB
+            WHEN "010" =>
                 R_ext <= A_ext - B_ext;
                 R <= R_ext(31 DOWNTO 0);
-                carry_bit <= NOT R_ext(32); -- C = 1 if no borrow
+                carry_bit <= NOT R_ext(32);
                 overflow_bit <= (A_signed(31) XOR B_signed(31)) AND (A_signed(31) XOR R(31));
 
-            WHEN "011" => -- A
+            WHEN "011" =>
                 R <= A_signed;
 
-            WHEN "100" => -- OR
+            WHEN "100" =>
                 R <= A_signed OR B_signed;
 
-            WHEN "101" => -- AND
+            WHEN "101" =>
                 R <= A_signed AND B_signed;
 
-            WHEN "110" => -- XOR
+            WHEN "110" =>
                 R <= A_signed XOR B_signed;
 
-            WHEN "111" => -- NOT
+            WHEN "111" =>
                 R <= NOT A_signed;
 
             WHEN OTHERS =>
@@ -69,7 +67,6 @@ BEGIN
         END CASE;
     END PROCESS;
 
-    -- Sorties
     S <= STD_LOGIC_VECTOR(R);
     F <= STD_LOGIC_VECTOR(R_ext(31 DOWNTO 0));
     N <= R(31);

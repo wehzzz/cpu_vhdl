@@ -21,7 +21,6 @@ BEGIN
     Mux_in1 <= STD_LOGIC_VECTOR(unsigned(PC) + 1);
     Mux_in2 <= STD_LOGIC_VECTOR(unsigned(PC) + 1 + unsigned(SignExt_out));
 
-    -- Multiplexeur pour la selection de l'adresse du PC
     U_Multiplexeur_PC : ENTITY work.Multiplexeur
         GENERIC MAP(
             N => 32
@@ -33,14 +32,12 @@ BEGIN
             S => MuxPC_out
         );
 
-    -- Instruction Memory
     U_Instruction_Memory : ENTITY work.Instruction_Memory
         PORT MAP(
             PC => PC,
             Instruction => Instruction
         );
 
-    -- Sign Extension pour l'offset
     U_Sign_Extension_Offset : ENTITY work.Sign_Extension
         GENERIC MAP(
             N => 24
@@ -50,7 +47,6 @@ BEGIN
             S => SignExt_out
         );
 
-    -- PC
     U_PC : ENTITY work.PC
         PORT MAP(
             CLK => CLK,

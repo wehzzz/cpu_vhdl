@@ -19,8 +19,7 @@ ENTITY Banc_Registres IS
 END ENTITY;
 
 ARCHITECTURE rtl OF Banc_Registres IS
-    -- Declaration Type Tableau Memoire 
-    TYPE table IS ARRAY(15 DOWNTO 0) OF STD_LOGIC_VECTOR(31 DOWNTO 0); -- Fonction d'Initialisation du Banc de Registres 
+    TYPE table IS ARRAY(15 DOWNTO 0) OF STD_LOGIC_VECTOR(31 DOWNTO 0);
     FUNCTION init_banc RETURN table IS
         VARIABLE result : table;
     BEGIN
@@ -29,7 +28,7 @@ ARCHITECTURE rtl OF Banc_Registres IS
         END LOOP;
         result(15) := X"00000030";
         RETURN result;
-    END init_banc; -- Déclaration et Initialisation du Banc de Registres 16x32 bits 
+    END init_banc; 
     SIGNAL Banc : table := init_banc;
 BEGIN
     A <= Banc(to_integer(unsigned(RA)));

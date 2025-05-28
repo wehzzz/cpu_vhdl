@@ -6,7 +6,6 @@ ENTITY tb_Unite_Traitement IS
 END ENTITY;
 
 ARCHITECTURE behavior OF tb_Unite_Traitement IS
-    -- Component under test
     COMPONENT Unite_Traitement IS
         PORT (
             CLK : IN STD_LOGIC;
@@ -21,7 +20,6 @@ ARCHITECTURE behavior OF tb_Unite_Traitement IS
         );
     END COMPONENT;
 
-    -- Signals
     SIGNAL CLK : STD_LOGIC := '0';
     SIGNAL Reset : STD_LOGIC := '0';
     SIGNAL RA, RB, RW : STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -36,7 +34,6 @@ ARCHITECTURE behavior OF tb_Unite_Traitement IS
     CONSTANT CLK_PERIOD : TIME := 10 ns;
 
 BEGIN
-    -- Instanciation de l’unité de traitement
     DUT : Unite_Traitement
     PORT MAP(
         CLK => CLK,
@@ -56,7 +53,6 @@ BEGIN
         V => V
     );
 
-    -- Clock generation
     CLK_PROCESS : PROCESS
     BEGIN
         WHILE true LOOP
@@ -67,16 +63,12 @@ BEGIN
         END LOOP;
     END PROCESS;
 
-    -- Stimulus
     STIMULUS : PROCESS
     BEGIN
-        -- Reset
         Reset <= '1';
         WAIT FOR CLK_PERIOD;
         Reset <= '0';
 
-        --------------------------------------------------
-        -- R1 := 0x10
         RA <= "0000";
         Imm <= X"10";
         RW <= "0001";
@@ -87,7 +79,6 @@ BEGIN
         WAIT FOR CLK_PERIOD;
         WE <= '0';
 
-        -- R2 := 0x20
         RA <= "0000";
         Imm <= X"20";
         RW <= "0010";
@@ -98,8 +89,6 @@ BEGIN
         WAIT FOR CLK_PERIOD;
         WE <= '0';
 
-        --------------------------------------------------
-        -- Addition R3 := R1 + R2
         RA <= "0001";
         RB <= "0010";
         RW <= "0011";
@@ -110,8 +99,6 @@ BEGIN
         WAIT FOR CLK_PERIOD;
         WE <= '0';
 
-        --------------------------------------------------
-        -- Subtraction R4 := R2 - R1
         RA <= "0010";
         RB <= "0001";
         RW <= "0100";
@@ -122,8 +109,6 @@ BEGIN
         WAIT FOR CLK_PERIOD;
         WE <= '0';
 
-        --------------------------------------------------
-        -- ADDI: R5 := R2 + 0x05
         RA <= "0010";
         Imm <= X"05";
         RW <= "0101";
@@ -134,8 +119,6 @@ BEGIN
         WAIT FOR CLK_PERIOD;
         WE <= '0';
 
-        --------------------------------------------------
-        -- SUBI: R6 := R2 - 0x05
         RA <= "0010";
         Imm <= X"05";
         RW <= "0110";
@@ -146,8 +129,6 @@ BEGIN
         WAIT FOR CLK_PERIOD;
         WE <= '0';
 
-        --------------------------------------------------
-        -- Copy R1 -> R7
         RA <= "0001";
         RB <= "0001";
         RW <= "0111";
@@ -158,11 +139,9 @@ BEGIN
         WAIT FOR CLK_PERIOD;
         WE <= '0';
 
-        --------------------------------------------------
-        -- Write R2 to memory at address 0x20
         RA <= "0010";
         RB <= "0010";
-        OP <= "011"; -- use R2 as Addr + DataIn
+        OP <= "011";
         ALUSrc <= '0';
         MemWr <= '1';
         WrSrc <= '0';
@@ -170,10 +149,8 @@ BEGIN
         WAIT FOR CLK_PERIOD;
         MemWr <= '0';
 
-        --------------------------------------------------
-        -- Read from memory at 0x30 into R8
-        RA <= "0010"; -- use R2 again for address
-        RB <= "0000"; -- ignored
+        RA <= "0010";
+        RB <= "0000";
         OP <= "011";
         ALUSrc <= '0';
         WrSrc <= '1';
@@ -183,7 +160,6 @@ BEGIN
         WAIT FOR CLK_PERIOD;
         WE <= '0';
 
-        --------------------------------------------------
         WAIT FOR 10 * CLK_PERIOD;
         ASSERT FALSE REPORT "Fin de simulation." SEVERITY FAILURE;
     END PROCESS;

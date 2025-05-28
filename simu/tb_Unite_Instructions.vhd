@@ -28,7 +28,6 @@ ARCHITECTURE behavior OF tb_Unite_Instructions IS
 
 BEGIN
 
-    -- Instance du composant à tester
     DUT : Unite_Gestion_Instructions
     PORT MAP(
         CLK => CLK,
@@ -38,7 +37,6 @@ BEGIN
         Instruction => Instruction
     );
 
-    -- Génération de l'horloge
     clk_process : PROCESS
     BEGIN
         WHILE TRUE LOOP
@@ -49,27 +47,21 @@ BEGIN
         END LOOP;
     END PROCESS;
 
-    -- Stimulus principal
     stim_proc : PROCESS
     BEGIN
-        -- first reset
         Reset <= '1';
         WAIT FOR 1 ns;
 
-        -- checking inst(0)
         ASSERT instruction = x"E3A01020" REPORT "Bad first instruction" SEVERITY error;
         WAIT FOR 4 ns;
 
         Reset <= '0';
         WAIT FOR 1 ns;
 
-        -- PC should inc on clock tick so we check inst(1)
         ASSERT instruction = x"E3A02000" REPORT "Bad second instruction PC:" SEVERITY error;
 
-        -- checking increasing PC with offset
         offset <= x"000001";
         nPCsel <= '1';
-        -- waiting clock + 1ns offset
         WAIT FOR 10 ns;
 
         ASSERT instruction = x"E0822000" REPORT "Bad increase with offset actual: " SEVERITY error;
