@@ -13,6 +13,7 @@ ARCHITECTURE rtl OF register_PSR IS
 BEGIN
     PROCESS (N, Z, C, V, PSREn)
     BEGIN
+        PSR(27 DOWNTO 0) <= (OTHERS => '0');
         IF PSREn = '1' THEN
             PSR(31) <= N;
             PSR(30) <= Z;
