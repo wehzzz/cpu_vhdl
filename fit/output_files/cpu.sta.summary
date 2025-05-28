@@ -1,0 +1,77 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'CLK'
+Slack : -15.857
+TNS   : -27756.363
+
+Type  : Slow 1200mV 85C Model Setup 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : -11.125
+TNS   : -11.125
+
+Type  : Slow 1200mV 85C Model Hold 'CLK'
+Slack : 0.651
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : 0.675
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK'
+Slack : -3.000
+TNS   : -3277.602
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : -0.213
+TNS   : -1.472
+
+Type  : Slow 1200mV 0C Model Setup 'CLK'
+Slack : -14.679
+TNS   : -25609.857
+
+Type  : Slow 1200mV 0C Model Setup 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : -10.282
+TNS   : -10.282
+
+Type  : Slow 1200mV 0C Model Hold 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : 0.557
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CLK'
+Slack : 0.606
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK'
+Slack : -3.000
+TNS   : -3277.602
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : -0.182
+TNS   : -1.042
+
+Type  : Fast 1200mV 0C Model Setup 'CLK'
+Slack : -6.374
+TNS   : -10904.997
+
+Type  : Fast 1200mV 0C Model Setup 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : -4.654
+TNS   : -4.654
+
+Type  : Fast 1200mV 0C Model Hold 'CLK'
+Slack : 0.063
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : 0.209
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK'
+Slack : -3.000
+TNS   : -2409.496
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : 0.056
+TNS   : 0.000
+
+------------------------------------------------------------

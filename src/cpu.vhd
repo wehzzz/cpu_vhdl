@@ -37,9 +37,11 @@ ARCHITECTURE rtl OF CPU IS
 
     TYPE HEX_array IS ARRAY (0 TO 5) OF STD_LOGIC_VECTOR(0 TO 6);
     SIGNAL HEX : HEX_array;
+    SIGNAL RST : STD_LOGIC := '0';
 
 BEGIN
     -- Assignation des sorties HEX
+    RST <= NOT Reset;
     HEX0 <= HEX(0);
     HEX1 <= HEX(1);
     HEX2 <= HEX(2);
@@ -51,7 +53,7 @@ BEGIN
     U_Gestion : ENTITY work.Unite_Gestion_Instructions
         PORT MAP(
             CLK => CLK,
-            Reset => Reset,
+            Reset => RST,
             nPCsel => nPCSel,
             Offset => Imm24,
             Instruction => Instruction
@@ -96,7 +98,7 @@ BEGIN
     U_Traitement : ENTITY work.Unite_Traitement
         PORT MAP(
             CLK => CLK,
-            Reset => Reset,
+            Reset => RST,
             RA => Rn,
             RB => Mux_out,
             RW => Rd,
@@ -127,7 +129,7 @@ BEGIN
     U_Display_Register : ENTITY work.RegAff
         PORT MAP(
             CLK => CLK,
-            Reset => Reset,
+            Reset => RST,
             En => RegAff,
             D => B_bus,
             Q => reg_display
