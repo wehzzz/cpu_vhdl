@@ -20,10 +20,11 @@ ARCHITECTURE rtl OF memory IS
     BEGIN
         FOR i IN 63 DOWNTO 0 LOOP
             IF (i >= 16#20# AND i <= 16#2A#) THEN
-                result(i) := "00000000000000000000000000000010";
+                result(i) := "00000000000000000000000000001111";
             ELSE
                 result(i) := (OTHERS => '0');
-            END IF;        END LOOP;
+            END IF;
+        END LOOP;
         RETURN result;
     END init_banc;
     SIGNAL Banc : table := init_banc;

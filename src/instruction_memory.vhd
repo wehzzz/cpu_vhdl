@@ -23,10 +23,10 @@ ARCHITECTURE RTL OF instruction_memory IS
         result (5) := x"E351002A";-- 0x5 -- CMP R1,0x2A -- Flag = R1-0x2A,si R1 <= 0x2A
         result (6) := x"BAFFFFFB";-- 0x6 -- BLT loop -- PC =PC+1+(-5) si N = 1
         result (7) := x"E6012000";-- 0x7 -- STR R2,0(R1) -- DATAMEM[R1] = R2
-        result (8) := x"EAFFFFF7";-- 0x8 -- BAL main -- PC=PC+1+(-9)
+        --result (8) := x"EAFFFFF7";-- 0x8 -- BAL main -- PC=PC+1+(-9)
         RETURN result;
     END init_mem;
     SIGNAL mem : RAM64x32 := init_mem;
 BEGIN
     Instruction <= mem(to_integer(unsigned (PC)));
-end architecture;
+END ARCHITECTURE;

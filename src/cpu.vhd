@@ -9,9 +9,7 @@ ENTITY CPU IS
         HEX0 : OUT STD_LOGIC_VECTOR(0 TO 6);
         HEX1 : OUT STD_LOGIC_VECTOR(0 TO 6);
         HEX2 : OUT STD_LOGIC_VECTOR(0 TO 6);
-        HEX3 : OUT STD_LOGIC_VECTOR(0 TO 6);
-        HEX4 : OUT STD_LOGIC_VECTOR(0 TO 6);
-        HEX5 : OUT STD_LOGIC_VECTOR(0 TO 6)
+        HEX3 : OUT STD_LOGIC_VECTOR(0 TO 6)
     );
 END ENTITY;
 
@@ -33,21 +31,16 @@ ARCHITECTURE rtl OF CPU IS
 
     SIGNAL B_bus : STD_LOGIC_VECTOR(31 DOWNTO 0);
     SIGNAL Mux_out : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    SIGNAL reg_display : STD_LOGIC_VECTOR(23 DOWNTO 0);
+    SIGNAL reg_display : STD_LOGIC_VECTOR(31 DOWNTO 0);
 
-    TYPE HEX_array IS ARRAY (0 TO 5) OF STD_LOGIC_VECTOR(0 TO 6);
-    SIGNAL HEX : HEX_array;
+    -- Ajout des signaux pour les sorties des 4 digits hexadécimaux
+    SIGNAL HEX_DIGIT : STD_LOGIC_VECTOR(15 DOWNTO 0) := (OTHERS => '0');
+
     SIGNAL RST : STD_LOGIC := '0';
 
 BEGIN
     -- Assignation des sorties HEX
     RST <= NOT Reset;
-    HEX0 <= HEX(0);
-    HEX1 <= HEX(1);
-    HEX2 <= HEX(2);
-    HEX3 <= HEX(3);
-    HEX4 <= HEX(4);
-    HEX5 <= HEX(5);
 
     -- good
     U_Gestion : ENTITY work.Unite_Gestion_Instructions
@@ -135,13 +128,29 @@ BEGIN
             Q => reg_display
         );
 
-    seven_seg : FOR i IN 0 TO 5 GENERATE
-        seven_seg_inst : ENTITY work.SEVEN_SEG
-            PORT MAP(
-                Pol => '1',
-                Segout => HEX(i)(0 TO 6),
-                Data => reg_display(4 * (i + 1) - 1 DOWNTO 4 * i)
-            );
-    END GENERATE;
+    -- Connexion des 16 bits de poids faible de reg_display à HEX_DIGIT
+    HEX_DIGIT <= reg_display(15 DOWNTO 0);
+
+    -- Instanciation des 4 décodeurs 7 segments pour les digits hexadécimaux
+    U_HEX0 : ENTITY work.SEVEN_SEG PORT MAP(
+        Pol => '1',
+        Segout => HEX0,
+        Data => HEX_DIGIT(3 DOWNTO 0)
+        );
+    U_HEX1 : ENTITY work.SEVEN_SEG PORT MAP(
+        Pol => '1',
+        Segout => HEX1,
+        Data => HEX_DIGIT(7 DOWNTO 4)
+        );
+    U_HEX2 : ENTITY work.SEVEN_SEG PORT MAP(
+        Pol => '1',
+        Segout => HEX2,
+        Data => HEX_DIGIT(11 DOWNTO 8)
+        );
+    U_HEX3 : ENTITY work.SEVEN_SEG PORT MAP(
+        Pol => '1',
+        Segout => HEX3,
+        Data => HEX_DIGIT(15 DOWNTO 12)
+        );
 
 END ARCHITECTURE;

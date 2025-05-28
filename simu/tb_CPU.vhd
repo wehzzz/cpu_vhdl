@@ -13,16 +13,14 @@ ARCHITECTURE sim OF tb_cpu IS
             HEX0 : OUT STD_LOGIC_VECTOR(0 TO 6);
             HEX1 : OUT STD_LOGIC_VECTOR(0 TO 6);
             HEX2 : OUT STD_LOGIC_VECTOR(0 TO 6);
-            HEX3 : OUT STD_LOGIC_VECTOR(0 TO 6);
-            HEX4 : OUT STD_LOGIC_VECTOR(0 TO 6);
-            HEX5 : OUT STD_LOGIC_VECTOR(0 TO 6)
+            HEX3 : OUT STD_LOGIC_VECTOR(0 TO 6)
         );
     END COMPONENT;
 
     -- Test bench signals
     SIGNAL CLK : STD_LOGIC := '0';
     SIGNAL Reset : STD_LOGIC := '0';
-    SIGNAL HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : STD_LOGIC_VECTOR(0 TO 6);
+    SIGNAL HEX0, HEX1, HEX2, HEX3 : STD_LOGIC_VECTOR(0 TO 6);
 
     CONSTANT CLK_PERIOD : TIME := 10 ns;
 
@@ -34,9 +32,7 @@ BEGIN
         HEX0 => HEX0,
         HEX1 => HEX1,
         HEX2 => HEX2,
-        HEX3 => HEX3,
-        HEX4 => HEX4,
-        HEX5 => HEX5
+        HEX3 => HEX3
     );
 
     -- Clock process

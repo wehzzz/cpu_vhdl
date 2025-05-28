@@ -3,75 +3,75 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'CLK'
-Slack : -15.857
-TNS   : -27756.363
+Slack : -17.492
+TNS   : -24481.504
 
 Type  : Slow 1200mV 85C Model Setup 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
-Slack : -11.125
-TNS   : -11.125
+Slack : -11.312
+TNS   : -11.312
 
 Type  : Slow 1200mV 85C Model Hold 'CLK'
-Slack : 0.651
+Slack : 0.293
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
-Slack : 0.675
+Slack : 0.363
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK'
 Slack : -3.000
-TNS   : -3277.602
+TNS   : -3266.378
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
-Slack : -0.213
-TNS   : -1.472
+Slack : -1.033
+TNS   : -5.690
 
 Type  : Slow 1200mV 0C Model Setup 'CLK'
-Slack : -14.679
-TNS   : -25609.857
+Slack : -16.182
+TNS   : -22444.211
 
 Type  : Slow 1200mV 0C Model Setup 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
-Slack : -10.282
-TNS   : -10.282
-
-Type  : Slow 1200mV 0C Model Hold 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
-Slack : 0.557
-TNS   : 0.000
+Slack : -10.406
+TNS   : -10.406
 
 Type  : Slow 1200mV 0C Model Hold 'CLK'
-Slack : 0.606
+Slack : 0.232
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
+Slack : 0.344
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK'
 Slack : -3.000
-TNS   : -3277.602
+TNS   : -3266.378
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
-Slack : -0.182
-TNS   : -1.042
+Slack : -0.900
+TNS   : -4.955
 
 Type  : Fast 1200mV 0C Model Setup 'CLK'
-Slack : -6.374
-TNS   : -10904.997
+Slack : -7.249
+TNS   : -9227.007
 
 Type  : Fast 1200mV 0C Model Setup 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
-Slack : -4.654
-TNS   : -4.654
+Slack : -4.603
+TNS   : -4.603
 
 Type  : Fast 1200mV 0C Model Hold 'CLK'
-Slack : 0.063
-TNS   : 0.000
+Slack : -0.031
+TNS   : -0.040
 
 Type  : Fast 1200mV 0C Model Hold 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
-Slack : 0.209
+Slack : 0.119
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK'
 Slack : -3.000
-TNS   : -2409.496
+TNS   : -2404.623
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Unite_Gestion_Instructions:U_Gestion|PC:U_PC|PC_value[0]'
-Slack : 0.056
-TNS   : 0.000
+Slack : -0.242
+TNS   : -0.667
 
 ------------------------------------------------------------

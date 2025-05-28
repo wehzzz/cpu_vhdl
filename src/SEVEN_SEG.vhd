@@ -21,56 +21,66 @@
 --    E|     |
 --      -----
 --        D=Seg(4)
-
-
-library IEEE;
-  use IEEE.std_logic_1164.all;
-  use IEEE.numeric_std.all;
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
 
 -- ------------------------------
-    Entity SEVEN_SEG is
--- ------------------------------
-  port ( Data   : in  std_logic_vector(3 downto 0); -- Expected within 0 .. 9
-         Pol    : in  std_logic;                    -- '0' if active LOW
-         Segout : out std_logic_vector(1 to 7) );   -- Segments A, B, C, D, E, F, G
-end entity SEVEN_SEG;
+ENTITY SEVEN_SEG IS
+  -- ------------------------------
+  PORT (
+    Data : IN STD_LOGIC_VECTOR(3 DOWNTO 0); -- Expected within 0 .. 9
+    Pol : IN STD_LOGIC; -- '0' if active LOW
+    Segout : OUT STD_LOGIC_VECTOR(1 TO 7)); -- Segments A, B, C, D, E, F, G
+END ENTITY SEVEN_SEG;
 
 -- -----------------------------------------------
-    Architecture COMB of SEVEN_SEG is
--- ------------------------------------------------
+ARCHITECTURE COMB OF SEVEN_SEG IS
+  -- ------------------------------------------------
 
-begin
-  process (Data, Pol)
-  begin
-    if Pol = '1' then
-      case Data is
-        when "0000" => Segout <= "0000001"; -- 0
-        when "0001" => Segout <= "1001111"; -- 1
-        when "0010" => Segout <= "0010010"; -- 2
-        when "0011" => Segout <= "0000110"; -- 3
-        when "0100" => Segout <= "1001100"; -- 4
-        when "0101" => Segout <= "0100100"; -- 5
-        when "0110" => Segout <= "0100000"; -- 6
-        when "0111" => Segout <= "0001111"; -- 7
-        when "1000" => Segout <= "0000000"; -- 8
-        when others => Segout <= "0000100"; -- 9
-      end case;
-    else
-      case Data is
-        when "0000" => Segout <= "1111110"; -- 0
-        when "0001" => Segout <= "0110000"; -- 1
-        when "0010" => Segout <= "1101101"; -- 2
-        when "0011" => Segout <= "1111001"; -- 3
-        when "0100" => Segout <= "0110011"; -- 4
-        when "0101" => Segout <= "1011011"; -- 5
-        when "0110" => Segout <= "1011111"; -- 6
-        when "0111" => Segout <= "1110000"; -- 7
-        when "1000" => Segout <= "1111111"; -- 8
-        when others => Segout <= "1111011"; -- 9
-      end case;
-    end if;
-  end process;
-			 
-
-end architecture COMB;
-
+BEGIN
+  PROCESS (Data, Pol)
+  BEGIN
+    IF Pol = '1' THEN
+      CASE Data IS
+        WHEN "0000" => Segout <= "0000001"; -- 0
+        WHEN "0001" => Segout <= "1001111"; -- 1
+        WHEN "0010" => Segout <= "0010010"; -- 2
+        WHEN "0011" => Segout <= "0000110"; -- 3
+        WHEN "0100" => Segout <= "1001100"; -- 4
+        WHEN "0101" => Segout <= "0100100"; -- 5
+        WHEN "0110" => Segout <= "0100000"; -- 6
+        WHEN "0111" => Segout <= "0001111"; -- 7
+        WHEN "1000" => Segout <= "0000000"; -- 8
+        WHEN "1001" => Segout <= "0000100"; -- 9
+        WHEN "1010" => Segout <= "0001000"; -- A
+        WHEN "1011" => Segout <= "1100000"; -- B
+        WHEN "1100" => Segout <= "0110001"; -- C
+        WHEN "1101" => Segout <= "1000010"; -- D
+        WHEN "1110" => Segout <= "0110000"; -- E
+        WHEN "1111" => Segout <= "0111000"; -- F
+        WHEN OTHERS => Segout <= "1111111"; -- Blank
+      END CASE;
+    ELSE
+      CASE Data IS
+        WHEN "0000" => Segout <= "1111110"; -- 0
+        WHEN "0001" => Segout <= "0110000"; -- 1
+        WHEN "0010" => Segout <= "1101101"; -- 2
+        WHEN "0011" => Segout <= "1111001"; -- 3
+        WHEN "0100" => Segout <= "0110011"; -- 4
+        WHEN "0101" => Segout <= "1011011"; -- 5
+        WHEN "0110" => Segout <= "1011111"; -- 6
+        WHEN "0111" => Segout <= "1110000"; -- 7
+        WHEN "1000" => Segout <= "1111111"; -- 8
+        WHEN "1001" => Segout <= "1111011"; -- 9
+        WHEN "1010" => Segout <= "1110111"; -- A
+        WHEN "1011" => Segout <= "0011111"; -- B
+        WHEN "1100" => Segout <= "1001110"; -- C
+        WHEN "1101" => Segout <= "0111101"; -- D
+        WHEN "1110" => Segout <= "1001111"; -- E
+        WHEN "1111" => Segout <= "1000111"; -- F
+        WHEN OTHERS => Segout <= "0000000"; -- Blank
+      END CASE;
+    END IF;
+  END PROCESS;
+END ARCHITECTURE COMB;
